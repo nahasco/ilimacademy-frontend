@@ -1,0 +1,144 @@
+:root {
+    --primary: #25114E;
+    --secondery: #F6F5F8;
+    --grey: #f8f8f8;
+    --grey-disabled: #C4C4C4;
+}
+
+body {
+    font-family: Poppins, sans-serif;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    background-color: var(--grey);
+}
+
+.navbar, .dummy {
+    overflow-x: hidden;
+    display: flex;
+    background-color: #ffffff;
+    flex-shrink: 0;
+    flex-direction: column;
+    height: 100vh;
+    width: 88px;
+    padding: 3rem 1rem 1rem 1rem;
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    transition: 0.2s;
+}
+
+.navbar {
+    position: absolute
+}
+
+.middlesection {
+    flex-grow: 1;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.topsection {
+    display: flex;
+    justify-content: center;
+    flex-grow: 0.15;
+}
+
+.logo {
+    width: 48px;
+}
+
+.navbar-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.navbar-item {
+    margin: 1rem 0;
+}
+
+.navbar-link {
+    display: flex;
+    border-radius: 1rem;
+    text-decoration: none;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1rem;
+    transition: 0.2s;
+    color: var(--grey-disabled);
+}
+
+.navbar-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.navbar-link:hover {
+    background-color: var(--secondery);
+}
+
+.navbar-title {
+    width: 0;
+    opacity: 0;
+}
+
+.navbar-link path, .navbar-title {
+    transition: 0.2s;
+    stroke: var(--grey-disabled);
+}
+
+.navbar-link:hover path, .navbar-link:hover .navbar-title {
+    stroke: var(--primary);
+    color: var(--primary);
+}
+
+.navbar-link.active path {
+    stroke-width: 0;
+    stroke: var(--primary);
+    fill: var(--primary);
+}
+
+.icon-keep-stroke {
+    fill: none !important;
+    stroke-width: 1.4px !important;
+}
+
+.navbar-link.active .two {
+    opacity: 0.4;
+}
+
+.navbar-link.active {
+    background-color: var(--secondery);
+    color: var(--primary);
+}
+/***************/
+
+.body {
+    padding: 0 64px 0 64px;
+    width: 100%;
+}
+
+.header {
+    padding: 3rem 0 3rem 0;
+    display: flex;
+}
+
+.page-title {
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+.navbar:hover {
+    width: 207px;
+}
+
+.navbar:hover .navbar-title {
+    display: block;
+    opacity: 1;
+    width: 100%;
+}
