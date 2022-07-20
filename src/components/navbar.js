@@ -11,7 +11,7 @@ export default function Navbar() {
   return (
     <aside className='side'>
         <div className='dummy'></div>
-    <div className='navbar open'>
+    <div className='navbar'>
         <div className='topsection'>
             <div className='logo'>
                 <img src={logo} alt=''></img>
