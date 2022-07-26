@@ -5,6 +5,7 @@ import Dashboard from './pages/dashboard';
 import { Route, Routes } from 'react-router-dom';
 import Practice from './pages/practice';
 import History from './pages/history';
+import './styles/styles.scss'
 
 
 function App() {
