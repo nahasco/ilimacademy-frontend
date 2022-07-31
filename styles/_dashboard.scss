@@ -1,0 +1,128 @@
+.practice-widget-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.practice-widget {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 2.5rem;
+    flex-grow: 1;
+}
+
+.practice-widget-title {
+    color: #25114E;
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+.practice-widget-button {
+    background-color: transparent;
+    border: solid 2px var(--primary);
+    color: var(--primary);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    transition: 0.2s;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--primary);
+        color: white;
+    }
+}
+
+.math-wdgt {
+    background-image: linear-gradient(rgba(var(--math-dark), 0.67), rgba(var(--math-dark)));
+}
+
+.iq-wdgt {
+    background-image: linear-gradient(rgba(var(--iq-dark), 0.67), rgba(var(--iq-dark)));
+}
+
+.geometry-wdgt {
+    background-image: linear-gradient(rgba(var(--geometry-dark), 0.67), rgba(var(--geometry-dark)));
+}
+
+
+
+
+.widgets-container {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 1fr;
+}  
+
+@media screen and (min-width: 1024px) {
+    .widgets-container {
+        display: grid;
+        grid-gap: 1rem;
+        grid-auto-columns: 1fr;
+        grid-auto-rows: 1fr;
+        grid-template-areas: 
+            "progress progress skill skill"
+            "progress progress skill skill"
+            "progress progress todays streak"
+            "progress progress todays streak"
+            "progress progress todays streak";
+        
+    }
+    
+    .progress-wdgt { grid-area: progress }
+    .skill-level-wdgt { grid-area: skill }
+    .todays-wdgt { grid-area: todays }
+    .streak-wdgt { grid-area: streak }
+}
+
+
+.widget {
+    background-color: white;
+    padding: var(--widget-padding);
+    border-radius: 1rem;
+}
+
+.widget-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--widget-padding);
+    border-bottom: solid 1.5px var(--grey);
+    margin: calc(-1 * var(--widget-padding));
+    margin-bottom: var(--widget-padding);
+
+    button {
+        background-color: transparent;
+        border: solid 1.5px var(--grey-disabled);
+        border-radius: 100px;
+        color: var(--grey-disabled);
+        width: 24px;
+        height: 24px;
+    }
+}
+
+.widget-title {
+    color: var(--dark-grey);
+    font-weight: 500;
+}
+
+.skill-level-wdgt-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.skill-level-container-wdgt {
+    text-align: center;
+}
+
+.skill-level-title-wdgt {
+    font-weight: 500;
+}
+
+.underdev {
+    color: var(--grey-disabled);
+}
