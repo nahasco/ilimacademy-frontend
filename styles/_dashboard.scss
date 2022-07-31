@@ -37,15 +37,15 @@
 }
 
 .math-wdgt {
-    background-image: linear-gradient(rgba(var(--math-dark), 0.67), rgba(var(--math-dark)));
+    background-color: rgba(var(--math-dark), 0.7);
 }
 
 .iq-wdgt {
-    background-image: linear-gradient(rgba(var(--iq-dark), 0.67), rgba(var(--iq-dark)));
+    background-color: rgba(var(--iq-dark));
 }
 
 .geometry-wdgt {
-    background-image: linear-gradient(rgba(var(--geometry-dark), 0.67), rgba(var(--geometry-dark)));
+    background-color: rgba(var(--geometry-dark));
 }
 
 
