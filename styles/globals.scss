@@ -1,4 +1,4 @@
-@import './navbar', './header', './dashboard';
+@import './navbar', './header', './dashboard', './register';
 
 :root {
     --primary: #25114E;
@@ -83,4 +83,10 @@ body {
             d: path('M45.86,41.58l11.29-3a2.34,2.34,0,1,1,1.2,4.52l-11.29,3a5.22,5.22,0,1,1-1.2-4.52Z');
         }
     }
+}
+
+input {
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: solid 1px var(--grey-disabled);
 }

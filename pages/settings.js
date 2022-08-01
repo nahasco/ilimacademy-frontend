@@ -1,14 +1,20 @@
 import Head from 'next/head'
 import Header from '../components/Header'
+import Layout from '../components/Layout'
 
-export default function Settings() {
+export default function SettingsPage() {
   return (
     <>
-      <Head>
-        <title>Settings</title>
-      </Head>
-      <Header heading={Settings}></Header>
+      <Header heading={"Settings"}></Header>
       settings
     </>
+  )
+}
+
+SettingsPage.getLayout = function getLayout(SettingsPage) {
+  return (
+    <Layout>
+      {SettingsPage}
+    </Layout>
   )
 }

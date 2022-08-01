@@ -1,13 +1,11 @@
 import Head from 'next/head'
 import Header from '../components/Header'
+import Layout from '../components/Layout'
 import Skill_level from '../components/Skill_level'
 
 export default function Dashboard() {
   return (
   <>
-    <Head>
-      <title>Dashboard</title>
-    </Head>
     <Header heading="Dashboard"></Header>
     <div className='practice-widget-container'>
       <div className='practice-widget math-wdgt'>
@@ -70,5 +68,13 @@ export default function Dashboard() {
       </div>
     </div>
   </>
+  )
+}
+
+Dashboard.getLayout = function getLayout(Dashboard) {
+  return (
+    <Layout>
+      {Dashboard}
+    </Layout>
   )
 }

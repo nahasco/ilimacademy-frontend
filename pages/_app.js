@@ -1,12 +1,15 @@
+import Head from 'next/head'
 import Layout from '../components/Layout'
 import '../styles/globals.scss'
 
-function MyApp({ Component, pageProps }) {
-  return (
-    <Layout>
+export default function MyApp({ Component, pageProps }) {
+  // Use the layout defined at the page level, if available
+  const getLayout = Component.getLayout || ((page) => page)
+
+  return getLayout(
+    <>
+      <Head><title>Ilim Academy</title></Head>
       <Component {...pageProps} />
-    </Layout>
+    </>
   )
 }
-
-export default MyApp
