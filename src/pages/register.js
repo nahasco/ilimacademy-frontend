@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 function Register() {
 
@@ -15,6 +15,7 @@ function Register() {
         first_name,
         last_name,
         username,
+        email,
         password,
         re_password
     } = formData;
@@ -27,43 +28,48 @@ function Register() {
     }
 
     function onSubmit(event) {
-
-    }
+        event.preventDefault()
+        fetch("http://localhost:8000/api/account/test/")
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }   
 
     return (
         <div className="register-container">
             <div className="wrapper">
                 <h1>Register</h1>
                 <form onSubmit={onSubmit}>
-                    <div className="names">
-                        <div className="form-group first-name">
-                            <label htmlFor='first_name'>
-                                First Name
-                            </label>
-                            <input
-                                className='form-control'
-                                type='text'
-                                name='first_name'
-                                placeholder='First Name'
-                                onChange={onChange}
-                                value={first_name}
-                                required
-                            />
-                        </div>
-                        <div className="form-group last-name">
-                            <label htmlFor='last_name'>
-                                Last Name
-                            </label>
-                            <input
-                                className='form-control'
-                                type='text'
-                                name='last_name'
-                                placeholder='Last Name'
-                                onChange={onChange}
-                                value={last_name}
-                                required
-                            />
-                        </div>
+                    <div className="form-group first-name">
+                        <label htmlFor='first_name'>
+                            First Name
+                        </label>
+                        <input
+                            className='form-control'
+                            type='text'
+                            name='first_name'
+                            placeholder='First Name'
+                            onChange={onChange}
+                            value={first_name}
+                            required
+                        />
+                    </div>
+                    <div className="form-group last-name">
+                        <label htmlFor='last_name'>
+                            Last Name
+                        </label>
+                        <input
+                            className='form-control'
+                            type='text'
+                            name='last_name'
+                            placeholder='Last Name'
+                            onChange={onChange}
+                            value={last_name}
+                            required
+                        />
                     </div>
                     <div className="form-group">
                         <label htmlFor='username'>
@@ -76,6 +82,20 @@ function Register() {
                             placeholder='Username'
                             onChange={onChange}
                             value={username}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor='email'>
+                            Email
+                        </label>
+                        <input
+                            className='form-control'
+                            type='text'
+                            name='email'
+                            placeholder='Email'
+                            onChange={onChange}
+                            value={email}
                             required
                         />
                     </div>
