@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react"
+import Router from "next/router";
 
 function Register() {
+
+    const [error , setError] = useState()
 
     const[formData, setFormData] = useState({
         first_name: "",
         last_name: "",
         username: "",
         email: "",
-        password: "",
-        re_password: "",
+        password1: "",
+        password2: "",
     })
 
     const {
@@ -16,8 +19,8 @@ function Register() {
         last_name,
         username,
         email,
-        password,
-        re_password
+        password1,
+        password2
     } = formData;
 
     function onChange(event) {
@@ -29,12 +32,35 @@ function Register() {
 
     function onSubmit(event) {
         event.preventDefault()
-        fetch("http://localhost:8000/api/account/test/")
-        .then((res) => {
-            console.log(res);
+        fetch("http://localhost:8000/api/account/register/", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(formData) 
         })
+        .then(response => response.json())
+        .then(data => {
+            console.log()
+            if (data.key) {
+               // Router.push('/')
+            }
+            if (!data.key) {
+                console.log(data)
+                setError()
+                length = Object.keys(data).length
+                for (const [key, value] of Object.entries(data)) {
+                    setError({
+                        ...error,
+                        key: value[0]
+                    })
+                }
+            }
+        })
+        
         .catch((err)=>{
             console.log(err)
+            setError(`Something went wrong when trying to to create an account \n (${err})`)
         })
     }   
 
@@ -100,30 +126,30 @@ function Register() {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor='password'>
+                        <label htmlFor='password1'>
                             Password
                         </label>
                         <input
                             className='form-control'
                             type='password'
-                            name='password'
+                            name='password1'
                             placeholder='Password'
                             onChange={onChange}
-                            value={password}
+                            value={password1}
                             minLength='8'
                             required
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor='re_password'>
+                        <label htmlFor='password2'>
                             Confirm Password
                         </label>
                         <input
                             type='password'
-                            name='re_password'
+                            name='password2'
                             placeholder='Confirm Password'
                             onChange={onChange}
-                            value={re_password}
+                            value={password2}
                             minLength='8'
                             required
                         />

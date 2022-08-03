@@ -2,29 +2,11 @@ import { API_URL } from '../../../config/index';
 
 export default async (req, res) => {
     if (req.method === 'POST') {
-        const {
-            first_name,
-            last_name,
-            username,
-            email,
-            password,
-            re_password
-        } = req.body;
-
-        const body = JSON.stringify({
-            first_name,
-            last_name,
-            username,
-            email,
-            password,
-            re_password
-        });
-
+        body = JSON.stringify(req.body);
         try {
             const apiRes = await fetch(`${API_URL}/api/account/register`, {
                 method: 'POST',
                 headers: {
-                    'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: body
