@@ -1,10 +1,19 @@
 import Router from 'next/router';
-import React, { useState } from 'react'
-
+import React, { useState, useContext } from 'react'
+import Link from 'next/link';
 import { API_URL } from '../config/index';
 
+import useStore from '../stores/userStore';
 
 export default function LoginPage() {
+    
+    const [state, setState] = useState({})
+
+    const isLoggedIn = useStore((state) => state.isLoggedIn) 
+    const login = useStore((state) => state.login)
+    const username1 = useStore((state) => state.username)
+
+    console.log(isLoggedIn)
 
     const[formData, setFormData] = useState({
         username: "",
@@ -22,6 +31,8 @@ export default function LoginPage() {
             [event.target.name] : event.target.value
         })
     }
+    
+   
 
     async function onSubmit(event) {
         event.preventDefault()
@@ -35,11 +46,10 @@ export default function LoginPage() {
                 })
 
             if (response.ok) {
-                console.log("success")
                 const data = await response.json()
-                localStorage.setItem("key", data.key)
-                console.log(localStorage.getItem("key"))
-                Router.push('/')
+                console.log(username)
+                login(username, data.key)
+                // Router.push('/')
             }
         } catch(error) {
             console.log(error)
@@ -84,6 +94,8 @@ export default function LoginPage() {
                     <button type='submit'>
                             Login
                     </button>
+                    <Link href="/" shallow>Dash</Link>
+                    <div>{username1}</div>
 
                 </form>
             </div>

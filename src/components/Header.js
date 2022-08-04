@@ -2,9 +2,11 @@ import User_icon from '../icons/user_icon.js'
 import Notifications_icon from '../icons/notifications_icon.js'
 
 import { API_URL } from '../config/index';
+import Router from 'next/router';
+import useStore from '../stores/userStore.js';
 
 export default function Header({heading}) {
-
+  const logout = useStore((state) => state.logout)
   async function Logout (event) {
     const response = await fetch(`${API_URL}/api/account/logout/`, {
       method: "POST",
@@ -13,7 +15,8 @@ export default function Header({heading}) {
 
     if (response.ok) {
       console.log("logged out")
-      localStorage.clear();
+      logout()
+      Router.push('/login')
     }
   }
 

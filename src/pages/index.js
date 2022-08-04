@@ -1,12 +1,16 @@
-import Head from 'next/head'
+import { useContext } from 'react'
+
 import Header from '../components/Header'
 import Layout from '../components/Layout'
 import Skill_level from '../components/Skill_level'
 
+import useStore from '../stores/userStore'
+
 export default function Dashboard() {
+  const user = useStore((state) => state)
   return (
   <>
-    <Header heading="Dashboard"></Header>
+    <Header heading={`Hi, ${user.username}`} ></Header>
     <div className='practice-widget-container'>
       <div className='practice-widget math-wdgt'>
         <div className='practice-widget-title'>Math</div>

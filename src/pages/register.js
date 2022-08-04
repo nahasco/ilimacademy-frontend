@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import Router from "next/router";
-
 import { API_URL } from '../config/index';
 
 
-function RegisterPage() {
-
+export default function RegisterPage() {
     const [error , setError] = useState()
 
     const[formData, setFormData] = useState({
@@ -79,11 +77,8 @@ function RegisterPage() {
                 })
 
             if (response.ok) {
-                console.log("success")
                 const data = await response.json()
-                localStorage.setItem("key", data.key)
-                console.log(localStorage.getItem("key"))
-                Router.push('/')
+                Router.push('/login')
             }
         } catch(error) {
             console.log(error)
@@ -192,5 +187,3 @@ function RegisterPage() {
         </div>
     )
 }
-
-export default RegisterPage
