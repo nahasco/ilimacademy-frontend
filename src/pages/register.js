@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react"
 import Router from "next/router";
 
-function Register() {
+import { API_URL } from '../config/index';
+
+
+function RegisterPage() {
 
     const [error , setError] = useState()
 
@@ -30,39 +33,64 @@ function Register() {
         })
     }
 
-    function onSubmit(event) {
-        event.preventDefault()
-        fetch("http://localhost:8000/api/account/register/", {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify(formData) 
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log()
-            if (data.key) {
-               // Router.push('/')
-            }
-            if (!data.key) {
-                console.log(data)
-                setError()
-                length = Object.keys(data).length
-                for (const [key, value] of Object.entries(data)) {
-                    setError({
-                        ...error,
-                        key: value[0]
-                    })
-                }
-            }
-        })
+    // function onSubmit(event) {
+    //     event.preventDefault()
+    //     fetch("http://localhost:8000/api/account/register/", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-type": "application/json"
+    //         },
+    //         body: JSON.stringify(formData) 
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log()
+    //         if (data.key) {
+    //            // Router.push('/')
+    //         }
+    //         if (!data.key) {
+    //             console.log(data)
+    //             setError()
+    //             length = Object.keys(data).length
+    //             for (const [key, value] of Object.entries(data)) {
+    //                 setError({
+    //                     ...error,
+    //                     key: value[0]
+    //                 })
+    //             }
+    //         }
+    //     })
         
-        .catch((err)=>{
-            console.log(err)
-            setError(`Something went wrong when trying to to create an account \n (${err})`)
-        })
-    }   
+    //     .catch((err)=>{
+    //         console.log(err)
+    //         setError(`Something went wrong when trying to to create an account \n (${err})`)
+    //     })
+    // }   
+
+    async function onSubmit(event) {
+        event.preventDefault()
+        try {
+            const response = await fetch(`${API_URL}/api/account/register/`, {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(formData) 
+                })
+
+            if (response.ok) {
+                console.log("success")
+                const data = await response.json()
+                localStorage.setItem("key", data.key)
+                console.log(localStorage.getItem("key"))
+                Router.push('/')
+            }
+        } catch(error) {
+            console.log(error)
+        }
+
+        }
+
 
     return (
         <div className="register-container">
@@ -165,4 +193,4 @@ function Register() {
     )
 }
 
-export default Register
+export default RegisterPage
