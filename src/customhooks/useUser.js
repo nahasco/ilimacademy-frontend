@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAuthenticatedUser } from "./common";
+import { getAuthenticatedUser } from "../common";
 import useStore from "../stores/userStore";
 
 export function useUser() {
