@@ -1,18 +1,10 @@
 import Header from '../components/Header'
 import Layout from '../components/Layout'
 import Skill_level from '../components/Skill_level'
-
 import useStore from '../stores/userStore'
-
-import { useUser } from '../components/useUser'
 
 function Dashboard() {
   const user = useStore((state) => state)
-  // if (!user || !authenticated) {
-  //   return (
-  //     <div>Loading...</div>
-  //   )
-  // }
   
   return (
   <>

@@ -1,25 +1,26 @@
-import { useState, useEffect } from 'react';
-import { getAuthenticatedUser } from './common';
-import Router from 'next/router';
-import useStore from '../stores/userStore';
+import { useState, useEffect } from "react";
+import { getAuthenticatedUser } from "./common";
+import useStore from "../stores/userStore";
 
 export function useUser() {
-    const login = useStore((state) => state.login)
+    const login = useStore((state) => state.login);
     const [user, setUser] = useState(null);
     const [authenticated, setAutenticated] = useState(null);
-    const setLoading = useStore((state) => state.setLoading)
+    const setLoading = useStore((state) => state.setLoading);
 
     useEffect(() => {
         async function getUserDetails() {
             const { authenticated, user } = await getAuthenticatedUser();
 
-            if (authenticated) {login(user, localStorage.getItem("key"))}
-            
+            if (authenticated) {
+                login(user, localStorage.getItem("key"));
+            }
+
             setUser(user);
             setAutenticated(authenticated);
             setLoading(false);
-            
-            console.log("ok")
+
+            console.log("ok");
         }
         getUserDetails();
     }, []);

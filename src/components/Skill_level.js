@@ -1,4 +1,3 @@
-
 export default function Skill_level(props) {
 
   return (
