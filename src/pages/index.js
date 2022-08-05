@@ -1,13 +1,19 @@
-import { useContext } from 'react'
-
 import Header from '../components/Header'
 import Layout from '../components/Layout'
 import Skill_level from '../components/Skill_level'
 
 import useStore from '../stores/userStore'
 
-export default function Dashboard() {
+import { useUser } from '../components/useUser'
+
+function Dashboard() {
   const user = useStore((state) => state)
+  // if (!user || !authenticated) {
+  //   return (
+  //     <div>Loading...</div>
+  //   )
+  // }
+  
   return (
   <>
     <Header heading={`Hi, ${user.username}`} ></Header>
@@ -82,3 +88,5 @@ Dashboard.getLayout = function getLayout(Dashboard) {
     </Layout>
   )
 }
+
+export default Dashboard

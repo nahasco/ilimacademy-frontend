@@ -8,12 +8,15 @@ const useStore = create((set) => ({
 
     login: (username, key) => {
         set(() => ({isLoggedIn: true, username: username, key: key}))
-        set((state) => (localStorage.setItem("key", state.key)))
+        set(() => (localStorage.setItem("key", key)))
     },
     
     logout: () => {
         set(() => ({isLoggedIn: false, username: "", key:""}))
         set(() => (localStorage.clear()))
+    },
+    setLoading: (status) => {
+        set(() => ({isLoading: status}))
     }
 }))
 

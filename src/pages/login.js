@@ -4,16 +4,12 @@ import Link from 'next/link';
 import { API_URL } from '../config/index';
 
 import useStore from '../stores/userStore';
+import Layout from '../components/Layout';
 
 export default function LoginPage() {
-    
-    const [state, setState] = useState({})
-
     const isLoggedIn = useStore((state) => state.isLoggedIn) 
     const login = useStore((state) => state.login)
     const username1 = useStore((state) => state.username)
-
-    console.log(isLoggedIn)
 
     const[formData, setFormData] = useState({
         username: "",
@@ -49,7 +45,7 @@ export default function LoginPage() {
                 const data = await response.json()
                 console.log(username)
                 login(username, data.key)
-                // Router.push('/')
+                Router.push('/');
             }
         } catch(error) {
             console.log(error)

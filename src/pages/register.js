@@ -4,8 +4,6 @@ import { API_URL } from '../config/index';
 
 
 export default function RegisterPage() {
-    const [error , setError] = useState()
-
     const[formData, setFormData] = useState({
         first_name: "",
         last_name: "",

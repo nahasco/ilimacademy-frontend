@@ -12,7 +12,7 @@ export default function PrivateRoute({ unprotectedRoutes, children}) {
   const pathIsProtected = unprotectedRoutes.indexOf(router.pathname) === -1;
 
   useEffect(() => {
-    if (isLoading && !isAuthenticated && pathIsProtected) {
+    if (!isLoading && !isAuthenticated && pathIsProtected) {
       // Redirect route, you can point this to /login
       router.push('/login');
     }

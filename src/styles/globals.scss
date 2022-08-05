@@ -1,4 +1,4 @@
-@import './navbar', './header', './dashboard', './register';
+@import './navbar', './header', './dashboard', './register', './skill_level';
 
 * {
     box-sizing: border-box;
@@ -34,72 +34,15 @@ body {
     width: 100%;
 }
 
-.skill-level-icon {
-    &.math {
-        transition: 1s;
-        fill: rgba(var(--math-dark));
-    }
+#FullPageLoader {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    left: 0;
+    z-index: 1000;
 
-    &.iq {
-        fill: rgba(var(--iq-dark));
-    }
-
-    &.geometry {
-        fill: rgba(var(--geometry-dark));
-    }
-
-    .level {
-        fill-opacity: 0.2;
-    }
-
-    &.level-1 {
-        .l1 {
-            fill-opacity: 1;
-        }
-    }
-
-    &.level-2 {
-
-        .l1,
-        .l2 {
-            fill-opacity: 1;
-        }
-
-        .arrow {
-            d: path('M37.91,41.7,33.14,31a2.34,2.34,0,1,1,4.27-1.91l4.77,10.67a5.21,5.21,0,1,1-4.27,1.91Z');
-        }
-    }
-
-    &.level-3 {
-
-        .l1,
-        .l2,
-        .l3 {
-            fill-opacity: 1;
-        }
-
-        .arrow {
-            d: path('M41.69,39.83l4.69-10.7A2.34,2.34,0,0,1,50.67,31L46,41.71a5.22,5.22,0,1,1-4.28-1.88Z');
-        }
-    }
-
-    &.level-4 {
-
-        .l1,
-        .l2,
-        .l3,
-        .l4 {
-            fill-opacity: 1;
-        }
-
-        .arrow {
-            d: path('M45.86,41.58l11.29-3a2.34,2.34,0,1,1,1.2,4.52l-11.29,3a5.22,5.22,0,1,1-1.2-4.52Z');
-        }
-    }
-}
-
-input {
-    padding: 1rem;
-    border-radius: 0.75rem;
-    border: solid 1px var(--grey-disabled);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
