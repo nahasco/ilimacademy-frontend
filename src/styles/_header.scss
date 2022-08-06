@@ -17,11 +17,55 @@
 }
 
 .header-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 0.7rem;
     background-color: white;
-    border-radius: 1rem;
-    width: 24px;
-    height: 24px;
+    border-radius: 1rem;    
     cursor: pointer;
     box-sizing: content-box;
+    transition: 300ms;
+    border: none;
+
+    &:hover {
+        filter: brightness(1);
+    }
+}
+
+.header-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 103px;
+    transform: translateX(-14px);
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1rem;
+    overflow: hidden;
+
+    li {
+        list-style: none;
+        text-decoration: none;
+        display: flex;
+        padding: 1rem;
+        border-radius: 1rem;
+        color: var(--dark-grey);
+        transition: 300ms;
+    
+        &:hover {
+            color: var(--primary);
+            background-color: var(--secondery);
+        }
+    }
+}
+
+.drop-menu-item {
+    
 }

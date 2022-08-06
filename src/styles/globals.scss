@@ -1,4 +1,7 @@
 @import './navbar', './header', './dashboard', './register', './skill_level';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
     box-sizing: border-box;
