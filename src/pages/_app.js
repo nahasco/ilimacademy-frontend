@@ -3,6 +3,7 @@ import "../styles/globals.scss";
 import PrivateRoute from "../components/PrivateRoute";
 import useStore from "../stores/userStore";
 import { useUser } from "../customhooks/useUser";
+import 'tailwindcss/tailwind.css'
 
 export default function MyApp({ Component, pageProps, router }) {
   // Use the layout defined at the page level, if available
@@ -13,11 +14,11 @@ export default function MyApp({ Component, pageProps, router }) {
   useUser();
 
   return getLayout(
-    <PrivateRoute unprotectedRoutes={unprotectedRoutes}>
+    <>
       <Head>
         <title>Ilim Academy</title>
       </Head>
       <Component {...pageProps} />
-    </PrivateRoute>
+    </>
   );
 }

@@ -1,5 +1,5 @@
-import Header from '../components/Header'
-import Layout from '../components/Layout'
+import Header from '../components/layout/Header'
+import Layout from '../components/layout/Layout'
 import Skill_level from '../components/Skill_level'
 import useStore from '../stores/userStore'
 
