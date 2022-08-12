@@ -126,3 +126,92 @@
 .underdev {
     color: var(--grey-disabled);
 }
+
+
+
+
+.practice-top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .recommended-practice {
+        flex-grow: 2;
+        flex-basis: 0;
+    }
+
+    .progress {
+        flex-grow: 1;
+        flex-basis: 0;
+    }
+}
+
+.practice-all {
+    margin-top: 3rem;
+}
+
+.practice-all-header {
+    padding: 1rem 0;
+
+    .title {
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    .description {
+        color: #BBBBBB;
+    }
+}
+
+.sections {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.topic {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 1rem;
+    border-radius: 1rem;
+
+    &:hover {
+        background-color: #fbfbfb;
+    }
+
+    .skill-level-icon {
+        width: 56px;
+        height: 56px;
+        padding: 6px;
+        border: solid 1px #ededed;
+        border-radius: 9px;
+        margin-right: 27px;
+    }
+
+    .topic-title {
+        font-size: 17px;
+        color: var(--dark-grey);
+    }
+
+    .left {
+        display: flex;
+        align-items: center;
+    }
+
+    .right {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1.5rem;
+
+        .notes {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            gap: 0.3rem;
+        }
+    }
+}
+

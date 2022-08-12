@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Header from '../components/layout/Header'
 import Layout from '../components/layout/Layout'
 import Skill_level from '../components/Skill_level'
@@ -12,15 +13,15 @@ function Dashboard() {
     <div className='practice-widget-container'>
       <div className='practice-widget math-wdgt'>
         <div className='practice-widget-title'>Math</div>
-        <button className='practice-widget-button'>Start Practicing</button>
+        <Link href="/practice/math"><button className='practice-widget-button'>Start Practicing</button></Link>
       </div>
       <div className='practice-widget iq-wdgt'>
         <div className='practice-widget-title'>IQ</div>
-        <button className='practice-widget-button'>Start Practicing</button>
+        <Link href="/practice/iq"><button className='practice-widget-button'>Start Practicing</button></Link>
       </div>
       <div className='practice-widget geometry-wdgt'>
         <div className='practice-widget-title'>Geometry</div>
-        <button className='practice-widget-button'>Start Practicing</button>
+        <Link href="/practice/geometry"><button className='practice-widget-button'>Start Practicing</button></Link>
       </div>
     </div>
 

@@ -15,10 +15,12 @@ export default function MyApp({ Component, pageProps, router }) {
 
   return getLayout(
     <>
-      <Head>
-        <title>Ilim Academy</title>
-      </Head>
-      <Component {...pageProps} />
+      <PrivateRoute unprotectedRoutes={unprotectedRoutes}>
+        <Head>
+          <title>Ilim Academy</title>
+        </Head>
+        <Component {...pageProps} />
+      </PrivateRoute>
     </>
   );
 }

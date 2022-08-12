@@ -1,4 +1,4 @@
-import Tabs from '../Tabs'
+import Tabs from './Tabs'
 import Header from './Header'
 
 export default function PracticeLayout({ children }) {

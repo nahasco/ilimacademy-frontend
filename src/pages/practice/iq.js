@@ -1,9 +1,14 @@
 import Layout from "../../components/layout/Layout";
 import PracticeLayout from "../../components/Layout/PracticeLayout";
+import Practice from "../../components/modules/Practice.mjs";
+import Sections from "../../components/modules/Sections";
 
 export default function IQ() {
     return (
-        <>IQ</>
+        <>
+            <Practice subject="IQ"/>
+            <Sections subject="IQ"/>
+        </>
     );
 }
 

@@ -42,10 +42,85 @@ body {
     width: 100%;
     height: 100vh;
     background-color: white;
+    top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
     z-index: 1000;
-
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+button{
+    &.contained {
+        background-color: var(--primary);
+        color: white;
+        padding: 0.5rem 2rem;
+        border-radius: 0.5rem;
+    }
+
+    &.outlined {
+        background-color: transparent;
+        color: var(--primary);
+        border: solid 2px var(--primary);
+        padding: 0.25rem 2rem;
+        border-radius: 0.5rem;
+    }
+}
+
+
+
+
+@keyframes RingProgress {
+    0% {
+        stroke-dasharray: 0 100;
+    }
+}
+
+.ActivityRings {
+    height: 100%;
+    width: 100%;
+    
+    .ring {
+        transform-origin: 50%;
+    }
+    .completed {
+        animation: RingProgress 1s ease-in-out forwards;
+        stroke-linecap: round;
+    }
+    circle {
+        fill: none;
+    }
+}
+
+$color-red: #c53f3d;
+.ring1 {
+    .background {
+        stroke: transparentize($color-red, 0.8);
+    }
+    .completed {
+        stroke: $color-red;
+    }   
+}
+
+$color-green: #94d55a;
+.ring2 {
+    .background {
+        stroke: transparentize($color-green, 0.8);
+    }
+    .completed {
+        stroke: $color-green;
+    }
+}
+
+$color-blue: #70bed7;
+.ring3 {
+    .background {
+        stroke: transparentize($color-blue, 0.8);
+    }
+    .completed {
+        stroke: $color-blue;
+    }
+}
+

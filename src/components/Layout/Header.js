@@ -1,15 +1,8 @@
-import Router from "next/router";
 import User_icon from "../../icons/user_icon.js";
-import Notifications_icon from "../../icons/notifications_icon.js";
-import { API_URL } from "../../config/index";
-import useStore from "../../stores/userStore.js";
-import { useEffect, useRef, useState } from "react";
 import DropMenu from "../AccountMenuItem.js";
 
 
 export default function Header({ heading }) {
-    const [open, setOpen] = useState(false)
-    const dropdown = useRef(null)
 
     // useEffect(() => {
     //     let handler = (event) => {

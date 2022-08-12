@@ -3,11 +3,14 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { API_URL } from "../config/index";
 import useStore from "../stores/userStore";
+import useData from "../stores/useData";
 import { LockClosedIcon } from '@heroicons/react/solid'
 
 
 export default function LoginPage() {
     const login = useStore((state) => state.login);
+    const setData = useData((state) => state.setData);
+    const datastore = useData((state) => state.data)
 
     const [formData, setFormData] = useState({
         username: "",
@@ -26,20 +29,35 @@ export default function LoginPage() {
     async function onSubmit(event) {
         event.preventDefault();
         try {
-            const response = await fetch(`${API_URL}/api/account/login/`, {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json",
-                },
-                body: JSON.stringify(formData),
-            });
+          const response = await fetch(`${API_URL}/api/account/login/`, {
+              method: "POST",
+              headers: {
+                  "Content-type": "application/json",
+              },
+              body: JSON.stringify(formData),
+          });
 
-            if (response.ok) {
-                const data = await response.json();
-                console.log(username);
-                login(username, data.key);
-                Router.push("/");
+          if (response.ok) {
+            const data = await response.json();
+            console.log(username);
+            login(username, data.key);
+          }
+
+          const token = localStorage.getItem("key");
+          const response2 = await fetch(`${API_URL}/api/app/data/`, {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json",
+                Authorization: `Token ${token}`
             }
+          });
+
+          const data2 = await response2.json();
+          if (response2.ok) {
+            setData(data2);
+            Router.push("/")
+          }
+
         } catch (error) {
             console.log(error);
         }
