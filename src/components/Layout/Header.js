@@ -2,7 +2,7 @@ import User_icon from "../../icons/user_icon.js";
 import DropMenu from "../AccountMenuItem.js";
 
 
-export default function Header({ heading }) {
+export default function HeaderMain({ heading }) {
 
     // useEffect(() => {
     //     let handler = (event) => {

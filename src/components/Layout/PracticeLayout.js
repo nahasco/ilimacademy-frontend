@@ -1,10 +1,10 @@
 import Tabs from './Tabs'
-import Header from './Header'
+import HeaderMain from './Header'
 
 export default function PracticeLayout({ children }) {
   return (
     <>
-        <Header heading={"Practice"}></Header>
+        <HeaderMain heading={"Practice"}></HeaderMain>
         <div className="flex justify-center">
             <Tabs/>
         </div>

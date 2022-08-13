@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Header from '../components/layout/Header'
+import HeaderMain from '../components/layout/Header'
 import Layout from '../components/layout/Layout'
 import Skill_level from '../components/Skill_level'
 import useStore from '../stores/userStore'
@@ -9,7 +9,7 @@ function Dashboard() {
   
   return (
   <>
-    <Header heading={`Hi, ${user.username}`} ></Header>
+    <HeaderMain heading={`Hi, ${user.username}`} ></HeaderMain>
     <div className='practice-widget-container'>
       <div className='practice-widget math-wdgt'>
         <div className='practice-widget-title'>Math</div>
