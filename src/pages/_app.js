@@ -2,7 +2,7 @@ import Head from "next/head";
 import "../styles/globals.scss";
 import PrivateRoute from "../components/PrivateRoute";
 import useStore from "../stores/userStore";
-import { useUser } from "../customhooks/useUser";
+import { useUser } from "../hooks/useUser";
 import 'tailwindcss/tailwind.css'
 
 export default function MyApp({ Component, pageProps, router }) {
