@@ -72,6 +72,10 @@ button{
 
 
 
+
+
+
+
 @keyframes RingProgress {
     0% {
         stroke-dasharray: 0 100;
@@ -79,12 +83,16 @@ button{
 }
 
 .ActivityRings {
-    height: 100%;
-    width: 100%;
-    
+    circle {
+        transform-box: fill-box;
+        transform-origin: center;
+        transform: rotate(-90deg);
+    }
+
     .ring {
         transform-origin: 50%;
     }
+
     .completed {
         animation: RingProgress 1s ease-in-out forwards;
         stroke-linecap: round;
@@ -94,33 +102,36 @@ button{
     }
 }
 
-$color-red: #c53f3d;
 .ring1 {
+    scale: 1;
+
     .background {
-        stroke: transparentize($color-red, 0.8);
+        stroke: var(--math-light);
     }
     .completed {
-        stroke: $color-red;
+        stroke: rgba(var(--math-dark));
     }   
 }
 
-$color-green: #94d55a;
 .ring2 {
+    scale: 0.75;
+
     .background {
-        stroke: transparentize($color-green, 0.8);
+        stroke: var(--iq-light);
     }
     .completed {
-        stroke: $color-green;
+        stroke: rgba(var(--iq-dark));
     }
 }
 
 $color-blue: #70bed7;
 .ring3 {
+    scale: 0.5;
+
     .background {
-        stroke: transparentize($color-blue, 0.8);
+        stroke: var(--geometry-light);
     }
     .completed {
-        stroke: $color-blue;
+        stroke: rgba(var(--geometry-dark));
     }
 }
-
