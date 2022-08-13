@@ -4,12 +4,12 @@ import useData from '../../stores/useData'
 import Skill_level from '../Skill_level'
 import Button from './Button'
 
-export default function Sections(props) {
+export default function Sections({subject}) {
     const data = useData((state) => state.data)
 
     let sections
     for (let i = 0; i < 4; i++) {
-        if (data.subjects[i].title == props.subject) {
+        if (data.subjects[i].title == subject) {
             sections = data.subjects[i].sections
             break
         } 
@@ -18,14 +18,14 @@ export default function Sections(props) {
     return (
         <div className="practice-all">
             <div className="practice-all-header">
-                <div className="title">All {props.subject} Practice</div>
+                <div className="title">All {subject} Practice</div>
                 <div className="description">You can choose whatever topic you want and start practicing</div>
             </div>
             <div className='sections'>
                 {sections && 
                 <>
                     {sections.map(section => {
-                        return <Section key={section.id} section={section} />
+                        return <Section key={section.id} section={section} subject={subject}/>
                     })}
                 </>
                 }
@@ -34,26 +34,26 @@ export default function Sections(props) {
     )
 }
 
-function Section({section}) {
+function Section({section, subject}) {
     return (
         <div className="widget">
             <div className="widget-header">
                 <div className="widget-title">{section.title}</div>
             </div>
             <div className='widget-content'>
-                <Topics topics={section.topics}/>
+                <Topics topics={section.topics} subject={subject}/>
             </div>
         </div>
     )
 }
 
-function Topics({topics}) {
+function Topics({topics, subject}) {
     return(
         <div className='topics'>
             {topics && 
             <>
                 {topics.map(topic => {
-                    return <Topic key={topic.id} topic={topic}/>
+                    return <Topic key={topic.id} topic={topic} subject={subject}/>
                 })}
             </>
             }
@@ -61,7 +61,7 @@ function Topics({topics}) {
     )
 }
 
-function Topic({topic}) {
+function Topic({topic, subject}) {
     const data = useData((state) => state.data)
 
     function skill_level(id){
@@ -77,8 +77,8 @@ function Topic({topic}) {
     return(
         <div className='topic'>
             <div className='left'>
-                <div className='topic-skill-level'>
-                    <Skill_level subject={"math"} level={skill_level(topic.id)}/>
+                <div className='topic-skill-level' style={{backgroundColor: `rgba(var(--${subject.toLowerCase()}-dark), 0.07)`}}>
+                    <Skill_level subject={subject.toLowerCase()} level={skill_level(topic.id)}/>
                 </div>
                 <div className='topic-title'>
                     {topic.title}
