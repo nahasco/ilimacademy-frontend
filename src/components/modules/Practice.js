@@ -22,13 +22,13 @@ export default function Practice(props) {
                     <div className="subject-last-progress">
                         <div className="subject-last-progress-title">Last 7 Days</div>
                         <div className="rings-last-7-days">
-                            <ActivityRings progress={50} subject={props.subject} height="39px"/>
-                            <ActivityRings progress={50} subject={props.subject} height="39px"/>
-                            <ActivityRings progress={50} subject={props.subject} height="39px"/>
-                            <ActivityRings progress={50} subject={props.subject} height="39px"/>
-                            <ActivityRings progress={50} subject={props.subject} height="39px"/>
-                            <ActivityRings progress={50} subject={props.subject} height="39px"/>
-                            <ActivityRings progress={50} subject={props.subject} height="39px"/>
+                            <ActivityRings progress={50} subject={props.subject} height="37px"/>
+                            <ActivityRings progress={50} subject={props.subject} height="37px"/>
+                            <ActivityRings progress={50} subject={props.subject} height="37px"/>
+                            <ActivityRings progress={50} subject={props.subject} height="37px"/>
+                            <ActivityRings progress={50} subject={props.subject} height="37px"/>
+                            <ActivityRings progress={50} subject={props.subject} height="37px"/>
+                            <ActivityRings progress={50} subject={props.subject} height="37px"/>
                         </div>
                     </div>
                 </div>
