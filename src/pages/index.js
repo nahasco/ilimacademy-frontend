@@ -3,7 +3,7 @@ import HeaderMain from '../components/layout/Header'
 import Layout from '../components/layout/Layout'
 import Skill_level from '../components/Skill_level'
 import useStore from '../stores/userStore'
-
+import ActivityRings from "../components/modules/ActivityRings"
 function Dashboard() {
   const user = useStore((state) => state)
   
@@ -31,7 +31,7 @@ function Dashboard() {
           <div className='widget-title'>Progress</div>
           <button>?</button>
         </div>
-        <div className='underdev'>This feature is underdevelopment</div>
+        <div className='underdev'>This feature is under development</div>
       </div>
 
       <div className='widget skill-level-wdgt'>
@@ -60,7 +60,23 @@ function Dashboard() {
           <div className='widget-title'>Today's Progress</div>
           <button>?</button>
         </div>
-        <div className='underdev'>This feature is underdevelopment</div>
+        <div className='widget-content'>
+          <ActivityRings math={40} iq={25} geometry={67} height={"140px"}/>
+          <div className='rings-keys'>
+            <div className='key'>
+              <div className='key-color math'></div>
+              <div className='key-label'>Math</div>
+            </div>
+            <div className='key'>
+              <div className='key-color iq'></div>
+              <div className='key-label'>IQ</div>
+            </div>
+            <div className='key'>
+              <div className='key-color geometry'></div>
+              <div className='key-label'>Geometry</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div className='widget streak-wdgt'>
         <div className='widget-header'>

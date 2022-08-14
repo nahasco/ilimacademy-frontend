@@ -256,3 +256,42 @@
         gap: 3rem;
     }
 }
+
+.todays-wdgt {
+    .widget-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        padding: 1rem 0;
+    }
+}
+
+.rings-keys {
+    .key {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .key-color {
+        width: 15px;
+        height: 10px;
+        border-radius: 100px;
+
+        &.math {
+            background-color: rgba(var(--math-dark));
+        }
+
+        &.iq {
+            background-color: rgba(var(--iq-dark));
+        }
+
+        &.geometry {
+            background-color: rgba(var(--geometry-dark));
+        }
+    }
+
+    .key-label {
+        font-size: 12px;
+    }
+}

@@ -12,7 +12,7 @@ export default function ActivityRings(props) {
     )
   } else {
     return (
-      <svg className="ActivityRings" viewBox='0 0 37 37'>
+      <svg className="ActivityRings" viewBox='0 0 37 37' height={props.height}>
         <g className="ring ring1">
           <circle strokeWidth="3" r="15.915" cx="50%" cy="50%" className="background" />
           <circle strokeWidth="3" r="15.915" cx="50%" cy="50%" className="completed" strokeDasharray={`${props.math}, 100`} />
