@@ -1,4 +1,4 @@
-@import './navbar', './header', './dashboard', './register', './skill_level';
+@import './navbar', './header', './dashboard', './register', './skill_level', './acticivtyrings', './practice';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -66,72 +66,5 @@ button{
         border: solid 2px var(--primary);
         padding: 0.25rem 2rem;
         border-radius: 0.5rem;
-    }
-}
-
-
-
-
-
-
-
-
-@keyframes RingProgress {
-    0% {
-        stroke-dasharray: 0 100;
-    }
-}
-
-.ActivityRings {
-    circle {
-        transform-box: fill-box;
-        transform-origin: center;
-        transform: rotate(-90deg);
-    }
-
-    .ring {
-        transform-origin: 50%;
-    }
-
-    .completed {
-        animation: RingProgress 1s ease-in-out forwards;
-        stroke-linecap: round;
-    }
-    circle {
-        fill: none;
-    }
-}
-
-.ring1 {
-    scale: 1;
-
-    .background {
-        stroke: var(--math-light);
-    }
-    .completed {
-        stroke: rgba(var(--math-dark));
-    }   
-}
-
-.ring2 {
-    scale: 0.75;
-
-    .background {
-        stroke: var(--iq-light);
-    }
-    .completed {
-        stroke: rgba(var(--iq-dark));
-    }
-}
-
-$color-blue: #70bed7;
-.ring3 {
-    scale: 0.5;
-
-    .background {
-        stroke: var(--geometry-light);
-    }
-    .completed {
-        stroke: rgba(var(--geometry-dark));
     }
 }
