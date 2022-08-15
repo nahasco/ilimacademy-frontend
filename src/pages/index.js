@@ -4,8 +4,18 @@ import Layout from '../components/layout/Layout'
 import Skill_level from '../components/Skill_level'
 import useStore from '../stores/userStore'
 import ActivityRings from "../components/modules/ActivityRings"
+import useData from "../stores/useData"
 function Dashboard() {
   const user = useStore((state) => state)
+  const data = useData((state) => state.data)
+
+  function skill_level_find(subject) {
+    for (let i = 0; i < 3; i++) {
+      if (subject.toLowerCase() == data.skill_level.subjects[i].subject.toLowerCase()) {
+        return data.skill_level.subjects[i].level
+      }
+    }
+  }
   
   return (
   <>
@@ -41,15 +51,15 @@ function Dashboard() {
         </div>
         <div className='skill-level-wdgt-content'>
           <div className='skill-level-container-wdgt'>
-            <div className='skill-level-icon-wdgt'><Skill_level level="2" subject="math"/></div>
+            <div className='skill-level-icon-wdgt'><Skill_level level={skill_level_find("math")} subject="math"/></div>
             <div className='skill-level-title-wdgt'>Math</div>
           </div>
           <div className='skill-level-container-wdgt'>
-            <div className='skill-level-icon-wdgt'><Skill_level level="3" subject="iq"/></div>
+            <div className='skill-level-icon-wdgt'><Skill_level level={skill_level_find("iq")} subject="iq"/></div>
             <div className='skill-level-title-wdgt'>IQ</div>
           </div>
           <div className='skill-level-container-wdgt'>
-            <div className='skill-level-icon-wdgt'><Skill_level level="4" subject="geometry"/></div>
+            <div className='skill-level-icon-wdgt'><Skill_level level={skill_level_find("geometry")} subject="geometry"/></div>
             <div className='skill-level-title-wdgt'>Geometry</div>
           </div>
         </div>
