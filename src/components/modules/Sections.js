@@ -66,7 +66,7 @@ function Topic({topic, subject}) {
 
     function skill_level(id){
         const topics = data.skill_level.topics
-        for (var i = 0; i < topics.length; i++) {
+        for (let i = 0; i < topics.length; i++) {
             if (topics[i].id == id){
                 return topics[i].level
             }
@@ -89,7 +89,9 @@ function Topic({topic, subject}) {
                     <Notes_icon/>
                     Notes
                 </button>
-                <Button type="outlined">Practice</Button>
+                <Link href={`practice/exercise/${topic.id}`}>
+                    <Button type="outlined">Practice</Button>
+                </Link>
             </div>
         </div>
     )
