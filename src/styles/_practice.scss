@@ -1,0 +1,206 @@
+
+.practice-top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .recommended-practice {
+        flex-grow: 3;
+        flex-basis: 0;
+    }
+
+    .progress {
+        flex-grow: 1;
+        flex-basis: 0;
+    }
+}
+
+.practice-all {
+    margin-top: 3rem;
+}
+
+.practice-all-header {
+    padding: 1rem 0;
+
+    .title {
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    .description {
+        color: #BBBBBB;
+    }
+}
+
+.sections {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.topic {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 1rem;
+    border-radius: 1rem;
+
+    &:hover {
+        background-color: #fbfbfb;
+    }
+
+    
+
+    .topic-title {
+        font-size: 17px;
+        color: var(--dark-grey);
+    }
+
+    .left {
+        display: flex;
+        align-items: center;
+    }
+
+    .right {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1.5rem;
+
+        .notes {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            gap: 0.3rem;
+        }
+    }
+}
+
+.topic-skill-level {
+    padding: 6px;
+    border-radius: 9px;
+    margin-right: 27px;
+
+    .skill-level-icon {
+        width: 44px;
+        height: 44px;
+    }
+    
+}
+
+.subject-today-progress {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subject-today-progress-title {
+    margin: 0 0 1rem 0;
+}
+
+.subject-last-progress {
+    display: flex;
+    flex-direction: column;
+}
+
+.rings-last-7-days {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 0.2rem;
+    flex-wrap: wrap;
+}
+
+.widget.progress {
+    .widget-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 2rem;
+        gap: 3rem;
+    }
+}
+
+.todays-wdgt {
+    .widget-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        padding: 1rem 0;
+    }
+}
+
+.rings-keys {
+    .key {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .key-color {
+        width: 15px;
+        height: 10px;
+        border-radius: 100px;
+
+        &.math {
+            background-color: rgba(var(--math-dark));
+        }
+
+        &.iq {
+            background-color: rgba(var(--iq-dark));
+        }
+
+        &.geometry {
+            background-color: rgba(var(--geometry-dark));
+        }
+    }
+
+    .key-label {
+        font-size: 12px;
+    }
+}
+
+.recommended-practice {
+    .widget-content {
+        display: flex;
+        padding: 1.25rem;
+    }
+
+    .recommended-topics {
+        display: flex;
+        flex: 3;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 0.5rem;
+
+        .recommended-topic {
+            border-radius: 0.5rem;
+            padding: 1rem;
+            transition: 200ms ease-out;
+            cursor: pointer;
+
+            &.selected {
+                font-size: 24px;
+            }
+
+            &:hover {
+                background-color: #f9f9f9;
+            }
+        }
+    }
+
+    .recommended-topic-skill-level {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        .skill-level-icon {
+            width: 175px;
+            height: 175px;
+        }
+    }
+}

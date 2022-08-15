@@ -1,6 +1,21 @@
 import ActivityRings from "./ActivityRings"
+import Skill_level from "../Skill_level"
+import Button from "./Button"
+import {useState} from 'react'
 
 export default function Practice(props) {
+    const [selected, setSelected] = useState(1)
+
+    function select(id) {
+        setSelected(id)
+    }
+
+    const topics = [
+        {"title": "Topic 1", "id": "1"},
+        {"title": "Topic 2", "id": "2"},
+        {"title": "Topic 3", "id": "3"},
+        {"title": "Topic 4", "id": "4"}
+    ]
     
     return (
         <div className="practice-top">
@@ -8,7 +23,24 @@ export default function Practice(props) {
                 <div className="widget-header">
                     <div className="widget-title">Recommended Practice</div>
                 </div>
-                <div className="widget-content"></div>
+                <div className="widget-content">
+                    <div className="recommended-topics">
+                        {topics.map(topic => {
+                            return (
+                                <div 
+                                onClick={() => select(topic.id)}
+                                style={{backgroundColor: selected == topic.id && `var(--${props.subject.toLowerCase()}-light)`}}
+                                className={"recommended-topic " + (selected == topic.id ? "selected" : "")}>
+                                    {topic.title}
+                                </div>
+                            )
+                        })}
+                    </div>
+                    <div className="recommended-topic-skill-level">
+                        <Skill_level level={1} subject={props.subject.toLowerCase()}/>
+                        <Button type={"outlined"}>Practice</Button>
+                    </div>
+                </div>
             </div>
             <div className="widget progress">
                 <div className="widget-header">
