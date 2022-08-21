@@ -1,4 +1,4 @@
-@import './navbar', './header', './dashboard', './register', './skill_level', './acticivtyrings', './practice';
+@import './navbar', './header', './dashboard', './register', './skill_level', './acticivtyrings', './practice', './exercise';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -56,7 +56,7 @@ button{
     &.contained {
         background-color: var(--primary);
         color: white;
-        padding: 0.5rem 2rem;
+        padding: 0.5rem 1.5rem;
         border-radius: 0.5rem;
     }
 
@@ -64,7 +64,11 @@ button{
         background-color: transparent;
         color: var(--primary);
         border: solid 2px var(--primary);
-        padding: 0.25rem 2rem;
+        padding: 0.25rem 1.5rem;
         border-radius: 0.5rem;
+    }
+
+    &:disabled {
+        pointer-events: none;
     }
 }

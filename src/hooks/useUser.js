@@ -25,8 +25,6 @@ export function useUser() {
             setUser(user);
             setAutenticated(authenticated);
             setLoading(false);
-
-            console.log("ok");
         }
         getUserDetails();
     }, []);

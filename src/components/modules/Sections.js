@@ -2,7 +2,7 @@ import React from 'react'
 import Notes_icon from '../../icons/notes_icon'
 import useData from '../../stores/useData'
 import Skill_level from '../Skill_level'
-import Button from './Button'
+import Link from "next/link"
 
 export default function Sections({subject}) {
     const data = useData((state) => state.data)
@@ -89,8 +89,8 @@ function Topic({topic, subject}) {
                     <Notes_icon/>
                     Notes
                 </button>
-                <Link href={`practice/exercise/${topic.id}`}>
-                    <Button type="outlined">Practice</Button>
+                <Link href={`/practice/exercise/${topic.id}`}>
+                    <button type="outlined">Practice</button>
                 </Link>
             </div>
         </div>
