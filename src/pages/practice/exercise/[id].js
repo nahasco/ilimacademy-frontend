@@ -10,7 +10,7 @@ export default function ExercisePage() {
   const key = localStorage.getItem("key");
 
   const fetcher = (url, key) => fetch(url, { headers: { Authorization: "Token " + key, "Content-type": "application/json" } }).then((res) => res.json());
-  const { data, error } = useSWR([`${API_URL}/api/app/exercise/${id}`, key], fetcher)
+  const { data, error } = useSWR([`${API_URL}/api/app/exercise/${id}/`, key], fetcher)
   
   if (error) {
     return <div>We faced a problem loading the exercise, please try again later {error}</div>

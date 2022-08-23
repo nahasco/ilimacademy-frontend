@@ -11,6 +11,7 @@ export default function MyApp({ Component, pageProps, router }) {
 
   const unprotectedRoutes = ["/login", "/register"];
   const login = useStore((state) => state.login);
+  
   useUser();
 
   return getLayout(

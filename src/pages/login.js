@@ -13,17 +13,17 @@ export default function LoginPage() {
   const datastore = useData((state) => state.data)
 
   const [formData, setFormData] = useState({
-      username: "",
-      password: "",
+    username: "",
+    password: "",
   });
 
   const { username, password } = formData;
 
   function onChange(event) {
-      setFormData({
-          ...formData,
-          [event.target.name]: event.target.value,
-      });
+    setFormData({
+        ...formData,
+        [event.target.name]: event.target.value,
+    });
   }
 
   async function onSubmit(event) {

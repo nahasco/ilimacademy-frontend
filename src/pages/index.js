@@ -5,6 +5,7 @@ import Skill_level from '../components/Skill_level'
 import useStore from '../stores/userStore'
 import ActivityRings from "../components/ActivityRings"
 import useData from "../stores/useData"
+
 function Dashboard() {
   const user = useStore((state) => state)
   const data = useData((state) => state.data)

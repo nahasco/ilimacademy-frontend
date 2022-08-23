@@ -2,7 +2,7 @@ import Questions from "./Questions"
 import Skill_level from "../Skill_level"
 
 export default function Exercise({ data }) {
-    const questions = data[0].questions
+    const questions = data.questions
   
     return (
       <div className="exercise-body">

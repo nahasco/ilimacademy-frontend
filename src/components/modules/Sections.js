@@ -90,7 +90,7 @@ function Topic({topic, subject}) {
                     Notes
                 </button>
                 <Link href={`/practice/exercise/${topic.id}`}>
-                    <button type="outlined">Practice</button>
+                    <button className="outlined">Practice</button>
                 </Link>
             </div>
         </div>
