@@ -20,6 +20,8 @@
     --geometry-dark: 148, 192, 243;
     --geometry-light: #F2F8FF;
     --widget-padding: 1.3rem;
+    --correct-green: #0FC069;
+    --incorrect-red: #FE4949;
 }
 
 body {
@@ -53,11 +55,17 @@ body {
 }
 
 button{
+    box-sizing: content-box;
+
     &.contained {
         background-color: var(--primary);
         color: white;
         padding: 0.5rem 1.5rem;
         border-radius: 0.5rem;
+
+        &:disabled {
+            background-color: #e8e8e8;
+        }
     }
 
     &.outlined {
