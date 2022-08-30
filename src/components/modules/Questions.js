@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react'
 import QuestionsPagination from './QuestionsPagination';
 import Choice from './Choice';
 import submitQuestion from '../../utils/submitQuestion';
+import endExercise from '../../utils/endExercise';
+import Results from './Results';
 
-export default function Questions({ questions }) {
+export default function Questions({ subject, topic, questions, endExercise, isComplete, results, seeResults, setSeeResults }) {
+  console.log(subject)
   const [exerciseEnd, setExerciseEnd] = useState(false);
-   
   const [selectedChoice, setSelectedChoice] = useState(() => {
     let x = {}
     for (let i=0; i<questions.length; i++) {
@@ -43,6 +45,10 @@ export default function Questions({ questions }) {
 
   const question = questions[currentQuestion];
 
+  useEffect(() => {
+    if (seeResults) setCurrentQuestion()
+  }, [seeResults])
+  
   function nextQuestion() {
     setCurrentQuestion(prevState => prevState + 1)
   }
@@ -57,12 +63,19 @@ export default function Questions({ questions }) {
       selected_choice_id: selectedChoice[question.id]
     }
     submitQuestion(data);
-  }
+  } 
 
   function footerButton() {
+    if (isComplete) {
+      if (!seeResults) {
+        return <button onClick={() => {setSeeResults(true); setCurrentQuestion();}} className="question-next-button contained">View Results</button> 
+      } else {
+        return
+      }
+    }
     if (isSubmitted[question.id]) {
       if ((currentQuestion + 1) == questions.length) {
-        return <button disabled={!Object.values(isSubmitted).every(value => value === true)} className="question-next-button contained">End Exercise</button> 
+        return <button onClick={() => endExercise()} disabled={!Object.values(isSubmitted).every(value => value === true)} className="question-next-button contained">End Exercise</button> 
       }
       return <button onClick={() => nextQuestion()} className="question-next-button contained">Next Question</button>
     }
@@ -72,20 +85,24 @@ export default function Questions({ questions }) {
   return (
     <>
       <main className="question-container">
-        <div className="question-header">
-          <div className="question-title">Question {currentQuestion+1}</div>
-          <button className="question-stuck">Stuck</button>
-        </div>
-        <div className="question-content">{question.content}</div>
-        <div className="question-choices">
-          {question.choices.map(choice => {
-            return <Choice key={choice.id} setSelectedChoice={setSelectedChoice} selectedChoice={selectedChoice} question={question} choice={choice} isSubmitted={isSubmitted}/>
-          })}
-        </div>
+        {seeResults ? <Results results={results} subject={subject} topic={topic}/> :
+          <>
+            <div className="question-header">
+              <div className="question-title">Question {currentQuestion+1}</div>
+              <button className="question-stuck">Stuck</button>
+            </div>
+            <div className="question-content">{question.content}</div>
+            <div className="question-choices">
+              {question.choices.map(choice => {
+                return <Choice key={choice.id} setSelectedChoice={setSelectedChoice} selectedChoice={selectedChoice} question={question} choice={choice} isSubmitted={isSubmitted}/>
+              })}
+            </div>
+          </>
+        }
       </main>
       <footer className="footer">
         <div className="innerfooter">
-          <QuestionsPagination questionsNumber={questions.length} currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion} questions={questions}/>
+          <QuestionsPagination questionsNumber={questions.length} currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion} questions={questions} setSeeResults={setSeeResults}/>
           {footerButton()}
         </div>
       </footer>

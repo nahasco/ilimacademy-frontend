@@ -21,7 +21,9 @@
     --geometry-light: #F2F8FF;
     --widget-padding: 1.3rem;
     --correct-green: #0FC069;
+    --correct-green-light: #EBF8F0;
     --incorrect-red: #FE4949;
+    --incorrect-red-light: #FFEDEC;
 }
 
 body {
@@ -79,4 +81,13 @@ button{
     &:disabled {
         pointer-events: none;
     }
+}
+
+.widget {
+    display: flex;
+    flex-direction: column;
+}
+
+.widget-content {
+    flex: 1;
 }

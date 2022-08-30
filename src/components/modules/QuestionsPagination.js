@@ -1,4 +1,4 @@
-export default function QuestionsPagination({questionsNumber, currentQuestion, setCurrentQuestion, questions}) {
+export default function QuestionsPagination({questionsNumber, currentQuestion, setCurrentQuestion, questions, setSeeResults}) {
     const questionNumbers = [];
   
     for (let i=1; i <= questionsNumber; i++) {
@@ -20,18 +20,18 @@ export default function QuestionsPagination({questionsNumber, currentQuestion, s
     }
     
     return (
-      <button className="question-pagination">
+      <div className="question-pagination">
         {questionNumbers.map(number => {
-          return <div
+          return <button
               key={number} 
-              onClick={() => {paginate(number); setCurrentQuestion(number - 1)}} 
+              onClick={() => {paginate(number); setCurrentQuestion(number - 1); setSeeResults(false)}} 
               className={"pagination-number " 
               + (currentQuestion == number - 1 ? "selected " : "") 
               + numberClassNames(number)}
               >
               {number} 
-            </div>
+            </button>
         })}
-      </button>
+      </div>
     )
   }

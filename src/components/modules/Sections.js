@@ -3,6 +3,7 @@ import Notes_icon from '../../icons/notes_icon'
 import useData from '../../stores/useData'
 import Skill_level from '../Skill_level'
 import Link from "next/link"
+import practiceExercise from "../../utils/practiceExercise"
 
 export default function Sections({subject}) {
     const data = useData((state) => state.data)
@@ -89,9 +90,7 @@ function Topic({topic, subject}) {
                     <Notes_icon/>
                     Notes
                 </button>
-                <Link href={`/practice/exercise/${topic.id}`}>
-                    <button className="outlined">Practice</button>
-                </Link>
+                <button onClick={() => practiceExercise(topic.id)} className="outlined">Practice</button>
             </div>
         </div>
     )
