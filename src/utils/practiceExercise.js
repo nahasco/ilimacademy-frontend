@@ -7,7 +7,6 @@ export default async function practiceExercise(topicID) {
 
     try {
         const response = await fetch(`${API_URL}/api/app/topic/${topicID}/`, {
-            method: "POST",
             headers: {
                 "Content-type": "application/json",
                 Authorization: `Token ${key}`,
