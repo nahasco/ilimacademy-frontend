@@ -81,6 +81,7 @@
     gap: 1rem;
     padding: 1rem;
     border-radius: 1rem;
+    transition: 200ms;
 
     &.selected {
         background-color: var(--secondery);
@@ -143,6 +144,8 @@
     height: 30px;
     padding: 0.5rem;
     border: 2px solid var(--primary);
+    transition: 200ms;
+
 }
 
 .footer{
