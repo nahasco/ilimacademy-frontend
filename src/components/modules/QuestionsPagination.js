@@ -1,4 +1,4 @@
-export default function QuestionsPagination({questionsNumber, currentQuestion, setCurrentQuestion, questions, setSeeResults}) {
+export default function QuestionsPagination({questionsNumber, qtokens, currentQuestion, setCurrentQuestion, questions, setSeeResults}) {
     const questionNumbers = [];
   
     for (let i=1; i <= questionsNumber; i++) {
@@ -10,8 +10,8 @@ export default function QuestionsPagination({questionsNumber, currentQuestion, s
     }
 
     function numberClassNames(number) {
-      if (questions[number-1].status[0].selected_choice) {
-        if (questions[number-1].status[0].correct) {
+      if (qtokens[questions[number-1].id]) {
+        if (qtokens[questions[number-1].id].correct) {
           return "correct"
         }
         return "incorrect"

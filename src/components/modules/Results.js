@@ -6,7 +6,6 @@ export default function Results({results, subject, topic}) {
     if (!results || results==undefined) {
         return <FullPageLoader />
     }
-    console.log(subject)
     return (
         <div className="results">
             <div className="scores">

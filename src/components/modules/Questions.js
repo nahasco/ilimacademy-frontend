@@ -5,14 +5,13 @@ import submitQuestion from '../../utils/submitQuestion';
 import endExercise from '../../utils/endExercise';
 import Results from './Results';
 
-export default function Questions({ subject, topic, questions, endExercise, isComplete, results, seeResults, setSeeResults }) {
-  console.log(subject)
+export default function Questions({ subject, topic, questions, qtokens, etoken, endExercise, isComplete, results, seeResults, setSeeResults }) {
   const [exerciseEnd, setExerciseEnd] = useState(false);
   const [selectedChoice, setSelectedChoice] = useState(() => {
     let x = {}
     for (let i=0; i<questions.length; i++) {
-      if (questions[i].status[0].selected_choice) {
-        x[questions[i].id] = questions[i].status[0].selected_choice
+      if (qtokens[questions[i].id]) {
+        x[questions[i].id] = qtokens[questions[i].id].selected_choice
       } 
     }
     return x;
@@ -20,8 +19,8 @@ export default function Questions({ subject, topic, questions, endExercise, isCo
 
   const [currentQuestion, setCurrentQuestion] = useState(() => {
     for (let i=0; i<questions.length; i++) {
-      if (questions[i].status[0].selected_choice) {
-        if(!questions[i+1].status[0].selected_choice) {
+      if (qtokens[questions[i].id]) {
+        if(!qtokens[questions[i+1].id]) {
           return i+1
         }
       } else {
@@ -34,7 +33,7 @@ export default function Questions({ subject, topic, questions, endExercise, isCo
   const [isSubmitted, setIsSubmitted] = useState(() => {
     let x = {}
     for (let i=0; i<questions.length; i++) {
-      if (questions[i].status[0].selected_choice) {
+      if (qtokens[questions[i].id]) {
         x[questions[i].id] = true
       } else {
       x[questions[i].id] = false
@@ -60,7 +59,8 @@ export default function Questions({ subject, topic, questions, endExercise, isCo
     })
     const data = {
       question_id: question.id,
-      selected_choice_id: selectedChoice[question.id]
+      selected_choice_id: selectedChoice[question.id],
+      exercise_token: etoken
     }
     submitQuestion(data);
   } 
@@ -102,7 +102,7 @@ export default function Questions({ subject, topic, questions, endExercise, isCo
       </main>
       <footer className="footer">
         <div className="innerfooter">
-          <QuestionsPagination questionsNumber={questions.length} currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion} questions={questions} setSeeResults={setSeeResults}/>
+          <QuestionsPagination questionsNumber={questions.length} qtokens={qtokens} currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion} questions={questions} setSeeResults={setSeeResults}/>
           {footerButton()}
         </div>
       </footer>
