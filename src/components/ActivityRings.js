@@ -6,7 +6,7 @@ export default function ActivityRings(props) {
         <g className="ring">
           <circle strokeWidth="4" r="15.915" cx="50%" cy="50%" className="background" stroke={`var(--${props.subject.toLowerCase()}-light)`} />
           <circle strokeWidth="4" r="15.915" cx="50%" cy="50%" className="completed" stroke={`rgba(var(--${props.subject.toLowerCase()}-dark))`} strokeDasharray={`${props.progress}, 100`} />
-          {props.text && <text x="50%" y="50%" text-anchor="middle" font-size="8px" fill={`rgba(var(--${props.subject.toLowerCase()}-dark))`} dy=".3em">{`${props.progress}%`}</text>}
+          {props.text && <text x="50%" y="50%" textAnchor="middle" fontSize="8px" fill={`rgba(var(--${props.subject.toLowerCase()}-dark))`} dy=".3em">{`${props.progress}%`}</text>}
         </g>
       </svg>
     )

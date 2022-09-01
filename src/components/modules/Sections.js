@@ -2,7 +2,8 @@ import React from 'react'
 import Notes_icon from '../../icons/notes_icon'
 import useData from '../../stores/useData'
 import Skill_level from '../Skill_level'
-import Button from './Button'
+import Link from "next/link"
+import practiceExercise from "../../utils/practiceExercise"
 
 export default function Sections({subject}) {
     const data = useData((state) => state.data)
@@ -66,7 +67,7 @@ function Topic({topic, subject}) {
 
     function skill_level(id){
         const topics = data.skill_level.topics
-        for (var i = 0; i < topics.length; i++) {
+        for (let i = 0; i < topics.length; i++) {
             if (topics[i].id == id){
                 return topics[i].level
             }
@@ -89,7 +90,7 @@ function Topic({topic, subject}) {
                     <Notes_icon/>
                     Notes
                 </button>
-                <Button type="outlined">Practice</Button>
+                <button onClick={() => practiceExercise(topic.id)} className="outlined">Practice</button>
             </div>
         </div>
     )

@@ -1,6 +1,5 @@
-import ActivityRings from "./ActivityRings"
+import ActivityRings from "../ActivityRings"
 import Skill_level from "../Skill_level"
-import Button from "./Button"
 import {useState} from 'react'
 
 export default function Practice(props) {
@@ -28,6 +27,7 @@ export default function Practice(props) {
                         {topics.map(topic => {
                             return (
                                 <div 
+                                key={topic.id}
                                 onClick={() => select(topic.id)}
                                 style={{backgroundColor: selected == topic.id && `var(--${props.subject.toLowerCase()}-light)`}}
                                 className={"recommended-topic " + (selected == topic.id ? "selected" : "")}>
@@ -38,7 +38,7 @@ export default function Practice(props) {
                     </div>
                     <div className="recommended-topic-skill-level">
                         <Skill_level level={1} subject={props.subject.toLowerCase()}/>
-                        <Button type={"outlined"}>Practice</Button>
+                        <button className="outlined">Practice</button>
                     </div>
                 </div>
             </div>
