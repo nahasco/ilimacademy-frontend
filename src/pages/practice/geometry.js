@@ -1,4 +1,4 @@
-import Layout from "../../components/layout/Layout";
+import Layout from "../../components/Layout/Layout";
 import PracticeLayout from "../../components/Layout/PracticeLayout";
 import Practice from "../../components/modules/Practice.js";
 import Sections from "../../components/modules/Sections";
