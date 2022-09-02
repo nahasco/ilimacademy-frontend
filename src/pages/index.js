@@ -10,6 +10,8 @@ function Dashboard() {
   const user = useStore((state) => state)
   const data = useData((state) => state.data)
 
+  console.log(data)
+  
   function skill_level_find(subject) {
     for (let i = 0; i < 3; i++) {
       if (subject.toLowerCase() == data.skill_level.subjects[i].subject.toLowerCase()) {
