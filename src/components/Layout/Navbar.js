@@ -18,7 +18,7 @@ export default function Navbar() {
                 <div className='navbar'>
                     <div className='topsection'>
                         <div className='logo'>
-                            <Image src='/Ilim.svg' alt=''></Img>
+                            <Image src='/Ilim.svg' alt=''></Image>
                         </div>
                     </div>
                     <div className='middlesection'>
