@@ -27,6 +27,6 @@ export function useUser() {
             setLoading(false);
         }
         getUserDetails();
-    }, []);
+    }, );
     return { user, authenticated };
 }

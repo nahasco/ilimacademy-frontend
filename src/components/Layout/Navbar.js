@@ -5,6 +5,7 @@ import Settings_icon from '../../icons/settings_icon'
 
 import Link from 'next/link'
 import { useRouter } from "next/router";
+import Image from 'next/image'
 
 export default function Navbar() {
 
@@ -17,7 +18,7 @@ export default function Navbar() {
                 <div className='navbar'>
                     <div className='topsection'>
                         <div className='logo'>
-                            <img src='/Ilim.svg' alt=''></img>
+                            <Image src='/Ilim.svg' alt=''></Img>
                         </div>
                     </div>
                     <div className='middlesection'>

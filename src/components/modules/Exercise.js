@@ -3,6 +3,7 @@ import Skill_level from "../Skill_level"
 import { useState } from "react"
 import { API_URL } from "../../config";
 import useStore from "../../stores/userStore";
+import Image from "next/image";
 
 export default function Exercise({ data }) {
   const questions = data.exercise.questions
@@ -37,7 +38,7 @@ export default function Exercise({ data }) {
             <div>{data.exercise.topic.title}</div>
           </div>
           <div className='exercise-header-logo'>
-            <img src='/Ilim.svg' alt=''></img>
+            <Image src='/Ilim.svg' alt=''></Img>
           </div>
           <div className='exercise-header-button'>Exit</div>
         </div>

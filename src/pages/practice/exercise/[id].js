@@ -10,10 +10,6 @@ export default function ExercisePage() {
   const key = localStorage.getItem("key");
 
   //check if id is a valid number
-  if (!isFinite(id)) {
-    return <div>404 not found</div>
-  }
-
   const fetcher = async (url, key) => {
     const res = await fetch(url, { headers: { Authorization: "Token " + key, "Content-type": "application/json" } })
   
@@ -31,6 +27,10 @@ export default function ExercisePage() {
   }
   const { data, error } = useSWR([`${API_URL}/api/app/exercise/${id}/`, key], fetcher)
   
+  if (!isFinite(id)) {
+    return <div>404 not found</div>
+  }
+
   if (error) {
     if (error.status == 404) {
       return <div>404 not found</div>
