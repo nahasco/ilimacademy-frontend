@@ -1,5 +1,5 @@
-import HeaderMain from '../components/layout/Header'
-import Layout from '../components/layout/Layout'
+import HeaderMain from '../components/Layout/Header'
+import Layout from '../components/Layout/Layout'
 
 export default function SettingsPage() {
   return (
