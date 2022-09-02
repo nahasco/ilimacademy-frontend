@@ -11,7 +11,7 @@ function Dashboard() {
   const data = useData((state) => state.data)
 
   console.log(data)
-  
+
   function skill_level_find(subject) {
     for (let i = 0; i < 3; i++) {
       if (subject.toLowerCase() == data.skill_level.subjects[i].subject.toLowerCase()) {
@@ -70,7 +70,7 @@ function Dashboard() {
 
       <div className="widget todays-wdgt">
         <div className="widget-header">
-          <div className="widget-title">Today"s Progress</div>
+          <div className="widget-title">Today's Progress</div>
           <button>?</button>
         </div>
         <div className="widget-content">
