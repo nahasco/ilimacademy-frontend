@@ -1,4 +1,4 @@
-export default function QuestionsPagination({questionsNumber, qtokens, currentQuestion, setCurrentQuestion, questions, setSeeResults}) {
+export default function QuestionsPagination({questionsNumber, isSubmitted, checkQuestion, currentQuestion, setCurrentQuestion, questions, setSeeResults}) {
     const questionNumbers = [];
   
     for (let i=1; i <= questionsNumber; i++) {
@@ -8,12 +8,10 @@ export default function QuestionsPagination({questionsNumber, qtokens, currentQu
     function paginate(number) {
       setCurrentQuestion(number.number - 1);
     }
-
+    
     function numberClassNames(number) {
-      if (qtokens[questions[number-1].id]) {
-        if (qtokens[questions[number-1].id].correct) {
-          return "correct"
-        }
+      if (isSubmitted[questions[number-1].id]) {
+        if (checkQuestion[questions[number-1].id]) return "correct"
         return "incorrect"
       }
       return ""

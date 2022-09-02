@@ -1,4 +1,4 @@
-export default function Choice({setSelectedChoice, selectedChoice, question, choice, isSubmitted}) {
+export default function Choice({setSelectedChoice, selectedChoice, question, choice, isSubmitted, checkQuestion, setCheckQuestion}) {
 
     function choiceClassNames () {
       if (selectedChoice[question.id] == choice.id) {
@@ -18,7 +18,7 @@ export default function Choice({setSelectedChoice, selectedChoice, question, cho
     return (
       <button 
         disabled={isSubmitted[question.id]}
-        onClick={() => setSelectedChoice({...selectedChoice, [question.id]: choice.id})}
+        onClick={() => {setSelectedChoice({...selectedChoice, [question.id]: choice.id}); setCheckQuestion({...checkQuestion, [question.id]: choice.correct});}}
         className={"choice " + choiceClassNames()} key={choice.id}
         >
         <div className="choice-letter">{choice.letter}</div>

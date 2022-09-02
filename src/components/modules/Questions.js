@@ -7,6 +7,21 @@ import Results from './Results';
 
 export default function Questions({ subject, topic, questions, qtokens, etoken, endExercise, isComplete, results, seeResults, setSeeResults }) {
   const [exerciseEnd, setExerciseEnd] = useState(false);
+  const [checkQuestion, setCheckQuestion] = useState(() => {
+    let x = {}
+    for (let i=0; i<questions.length; i++) {
+      if (qtokens[questions[i].id]) {
+        if (qtokens[questions[i].id].correct) {
+          x[i+1] = true
+        }
+        else {
+          x[i+1] = false
+        }
+      }
+    }
+    return x
+  });
+
   const [selectedChoice, setSelectedChoice] = useState(() => {
     let x = {}
     for (let i=0; i<questions.length; i++) {
@@ -46,8 +61,8 @@ export default function Questions({ subject, topic, questions, qtokens, etoken, 
 
   useEffect(() => {
     if (seeResults) setCurrentQuestion()
-  }, [seeResults])
-  
+  }, [seeResults])  
+
   function nextQuestion() {
     setCurrentQuestion(prevState => prevState + 1)
   }
@@ -94,7 +109,7 @@ export default function Questions({ subject, topic, questions, qtokens, etoken, 
             <div className="question-content">{question.content}</div>
             <div className="question-choices">
               {question.choices.map(choice => {
-                return <Choice key={choice.id} setSelectedChoice={setSelectedChoice} selectedChoice={selectedChoice} question={question} choice={choice} isSubmitted={isSubmitted}/>
+                return <Choice key={choice.id} setSelectedChoice={setSelectedChoice} selectedChoice={selectedChoice} question={question} choice={choice} isSubmitted={isSubmitted} checkQuestion={checkQuestion} setCheckQuestion={setCheckQuestion}/>
               })}
             </div>
           </>
@@ -102,7 +117,7 @@ export default function Questions({ subject, topic, questions, qtokens, etoken, 
       </main>
       <footer className="footer">
         <div className="innerfooter">
-          <QuestionsPagination questionsNumber={questions.length} qtokens={qtokens} currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion} questions={questions} setSeeResults={setSeeResults}/>
+          <QuestionsPagination questionsNumber={questions.length} isSubmitted={isSubmitted} checkQuestion={checkQuestion} currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion} questions={questions} setSeeResults={setSeeResults}/>
           {footerButton()}
         </div>
       </footer>
