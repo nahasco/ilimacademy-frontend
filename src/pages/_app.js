@@ -12,11 +12,11 @@ export default function MyApp({ Component, pageProps, router }) {
   const unprotectedRoutes = ["/login", "/register"];
   const login = useStore((state) => state.login);
   
-  useUser();
-
+  const {data} = useUser();
+  
   return getLayout(
     <>
-      <PrivateRoute unprotectedRoutes={unprotectedRoutes}>
+      <PrivateRoute unprotectedRoutes={unprotectedRoutes} data={data}>
         <Head>
           <title>Ilim Academy</title>
         </Head>

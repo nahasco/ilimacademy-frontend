@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import useStore from "../stores/userStore";
 import FullPageLoader from "./FullPageLoader";
 
-export default function PrivateRoute({ unprotectedRoutes, children }) {
+export default function PrivateRoute({ unprotectedRoutes, children, data }) {
     const router = useRouter();
     const isLoading = useStore((state) => state.isLoading);
     const isAuthenticated = useStore((state) => state.isLoggedIn);
@@ -17,7 +17,7 @@ export default function PrivateRoute({ unprotectedRoutes, children }) {
         }
     }, [isLoading, isAuthenticated, pathIsProtected]);
 
-    if ((isLoading || !isAuthenticated) && pathIsProtected) {
+    if ((isLoading || !isAuthenticated || !data) && pathIsProtected) {
         return <FullPageLoader />;
     }
 

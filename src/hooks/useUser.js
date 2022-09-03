@@ -4,22 +4,23 @@ import useData from "../stores/useData";
 import useStore from "../stores/userStore";
 
 export function useUser() {
+
     const login = useStore((state) => state.login);
     const setLoading = useStore((state) => state.setLoading);
     const setData = useData((state) => state.setData);
+    const data = useData((state) => state.data)
 
     const [user, setUser] = useState(null);
     const [authenticated, setAutenticated] = useState(null);
 
-
     useEffect(() => {
         async function getUserDetails() {
             const { authenticated, user } = await getAuthenticatedUser();
-            const data = await getUserData();
 
             if (authenticated) {
+                const newdata = await getUserData();
                 login(user, localStorage.getItem("key"));
-                setData(data);
+                setData(newdata);
             }
 
             setUser(user);
@@ -27,6 +28,6 @@ export function useUser() {
             setLoading(false);
         }
         getUserDetails();
-    }, );
-    return { user, authenticated };
+    }, []);
+    return { user, authenticated, data};
 }

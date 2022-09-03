@@ -11,6 +11,7 @@ export default function LoginPage() {
   const login = useStore((state) => state.login);
   const setData = useData((state) => state.setData);
   const datastore = useData((state) => state.data)
+  const setLoading = useStore((state) => state.setLoading);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -38,12 +39,18 @@ export default function LoginPage() {
       });
 
       if (response.ok) {
+        Router.push("/")
+
+        setLoading(true)
+
         const data = await response.json();
-        console.log(username);
         login(username, data.key);
 
-        const returnedData = getUserData()
-        returnedData && Router.push("/")
+        const returnedData = await getUserData()
+        setData(returnedData)
+        
+
+        setLoading(false)
       }
 
     } catch (error) {
