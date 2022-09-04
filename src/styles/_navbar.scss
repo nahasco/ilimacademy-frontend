@@ -83,7 +83,10 @@
 
     &.active {
         background-color: var(--secondery);
+        
+        .navbar-title {
         color: var(--primary);
+        }
 
         path {
         stroke-width: 0;
@@ -106,6 +109,8 @@
     font-weight: 500;
     width: 0;
     opacity: 0;
+    color: var(--grey-disabled)
+
 }
 
 .icon-keep-stroke {
