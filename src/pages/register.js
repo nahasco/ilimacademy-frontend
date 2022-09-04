@@ -1,8 +1,13 @@
 import { useState } from "react";
 import Router from "next/router";
 import { API_URL } from "../config/index";
+import useStore from "../stores/userStore";
+import Link from "next/link";
 
 export default function RegisterPage() {
+    const setLoading = useStore((state) => state.setLoading);
+    const isLoading = useStore((state) => state.isLoading);
+
     const [formData, setFormData] = useState({
         first_name: "",
         last_name: "",
@@ -23,6 +28,7 @@ export default function RegisterPage() {
     }
 
     async function onSubmit(event) {
+        setLoading(true)
         event.preventDefault();
         try {
             const response = await fetch(`${API_URL}/api/account/register/`, {
@@ -33,9 +39,9 @@ export default function RegisterPage() {
                 body: JSON.stringify(formData),
             });
 
-            if (response.ok) {
-                Router.push("/login");
-            }
+            if (response.ok) Router.push("/login")
+            if (response) setLoading(false)
+
         } catch (error) {
             console.log(error);
         }
@@ -44,8 +50,15 @@ export default function RegisterPage() {
     return (
         <div className="register-container">
             <div className="wrapper">
-                <h1>Register</h1>
+                {isLoading 
+                ? 
+                <div>Loading...</div>
+                :
+                <>
+                <h1 className="page-title">Register</h1>
+                <div className="account-massage">Already have an account? <Link href="/login">Login</Link></div>
                 <form onSubmit={onSubmit}>
+                    <div className="inputs">
                     <div className="form-group first-name">
                         <label htmlFor="first_name">First Name</label>
                         <input
@@ -119,9 +132,11 @@ export default function RegisterPage() {
                             required
                         />
                     </div>
-
-                    <button type="submit">Create Account</button>
+                    </div>
+                    <button type="submit" className="contained stretch">Create Account</button>
                 </form>
+                </>
+                }
             </div>
         </div>
     );

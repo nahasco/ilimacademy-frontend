@@ -10,6 +10,9 @@
         align-items: center;
         width: 100%;
         max-width: 500px;
+        background-color: white;
+        padding: 3rem;
+        border-radius: 1rem;
     }
 
     form {
@@ -24,4 +27,12 @@
     .form-group {
         margin: 1rem 0;
     }
+
+    .inputs {
+        margin: 2rem 0;
+    }
+}
+
+.account-massage {
+    text-align: center;
 }

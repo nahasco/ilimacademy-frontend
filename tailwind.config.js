@@ -24,4 +24,7 @@ module.exports = {
   plugins: [
     require('@tailwindcss/forms')
   ],
+  content: [
+    "./src/**/*.{js,jsx,html,css}"
+  ],
 }
