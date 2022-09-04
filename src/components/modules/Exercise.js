@@ -38,7 +38,7 @@ export default function Exercise({ data }) {
             <div>{data.exercise.topic.title}</div>
           </div>
           <div className='exercise-header-logo'>
-            <Image src='/Ilim.svg' alt=''></Image>
+            <Image src='/Ilim.svg' alt='' width="50px" height="50px"></Image>
           </div>
           <div className='exercise-header-button'>Exit</div>
         </div>
