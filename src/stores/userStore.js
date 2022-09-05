@@ -6,6 +6,11 @@ const useStore = create((set) => ({
     key: "",
     isLoading: true,
 
+    setKey: (key) => {
+        set(() => ({key: key}))
+        set(() => (localStorage.setItem("key", key)))
+    },
+
     login: (username, key) => {
         set(() => ({isLoggedIn: true, username: username, key: key}))
         set(() => (localStorage.setItem("key", key)))

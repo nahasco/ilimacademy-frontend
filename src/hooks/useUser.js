@@ -3,7 +3,7 @@ import { getAuthenticatedUser, getUserData } from "../utils/common";
 import useData from "../stores/useData";
 import useStore from "../stores/userStore";
 
-export function useUser() {
+export function getUser() {
 
     const login = useStore((state) => state.login);
     const setLoading = useStore((state) => state.setLoading);
@@ -18,9 +18,9 @@ export function useUser() {
             const { authenticated, user } = await getAuthenticatedUser();
 
             if (authenticated) {
-                const newdata = await getUserData();
                 login(user, localStorage.getItem("key"));
-                setData(newdata);
+                // const newdata = await getUserData();
+                // setData(newdata);
             }
 
             setUser(user);
@@ -29,5 +29,5 @@ export function useUser() {
         }
         getUserDetails();
     }, []);
-    return { user, authenticated, data};
+    return { user, authenticated};
 }
