@@ -60,7 +60,6 @@ export default function RegisterPage() {
                 <form onSubmit={onSubmit}>
                     <div className="inputs">
                     <div className="form-group first-name">
-                        <label htmlFor="first_name">First Name</label>
                         <input
                             className="form-control"
                             type="text"
@@ -72,7 +71,6 @@ export default function RegisterPage() {
                         />
                     </div>
                     <div className="form-group last-name">
-                        <label htmlFor="last_name">Last Name</label>
                         <input
                             className="form-control"
                             type="text"
@@ -84,7 +82,6 @@ export default function RegisterPage() {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="username">Username</label>
                         <input
                             className="form-control"
                             type="text"
@@ -96,7 +93,6 @@ export default function RegisterPage() {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="email">Email</label>
                         <input
                             className="form-control"
                             type="text"
@@ -108,7 +104,6 @@ export default function RegisterPage() {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password1">Password</label>
                         <input
                             className="form-control"
                             type="password"
@@ -121,7 +116,6 @@ export default function RegisterPage() {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password2">Confirm Password</label>
                         <input
                             type="password"
                             name="password2"

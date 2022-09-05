@@ -69,9 +69,6 @@ export default function LoginPage() {
             <form onSubmit={onSubmit}>
                 <div className="inputs">
                   <div className="form-group first-name">
-                    <label htmlFor="username">
-                      Username
-                    </label>
                     <input
                       id="username"
                       name="username"
@@ -85,9 +82,6 @@ export default function LoginPage() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="password">
-                      Password
-                    </label>
                     <input
                       id="password"
                       name="password"
