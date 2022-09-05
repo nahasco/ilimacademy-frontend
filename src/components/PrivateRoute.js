@@ -17,9 +17,13 @@ export default function PrivateRoute({ unprotectedRoutes, children, data }) {
         }
     }, [isLoading, isAuthenticated, pathIsProtected]);
 
-    if ((isLoading || !isAuthenticated || !data) && pathIsProtected) {
+    if ((isLoading || !isAuthenticated) && pathIsProtected) {
         return <FullPageLoader />;
     }
 
+    if (isLoading || !data) {
+        return <FullPageLoader />;
+    }
+    
     return children;
 }
