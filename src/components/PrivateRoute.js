@@ -20,7 +20,8 @@ const fetcher = async (url, key) => {
     return res.json()
 }
 
-export default function PrivateRoute({ unprotectedRoutes, children }) {
+export default function PrivateRoute({ children }) {
+    const unprotectedRoutes = ["/login", "/register"];
     const key = useStore((state) => state.key);
     const router = useRouter();
     const isLoading = useStore((state) => state.isLoading);
