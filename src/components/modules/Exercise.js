@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 export default function Exercise({ data }) {
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
   const questions = data.questions
   const key = useStore((state) => state.key)
@@ -15,6 +16,7 @@ export default function Exercise({ data }) {
   const [seeResults, setSeeResults] = useState(data.completed)
   
   async function endExercise() {
+    setLoading(true)
     const response = await fetch(`${API_URL}/api/app/exercise/end/`, {
       method: "POST",
       headers: {
@@ -24,10 +26,12 @@ export default function Exercise({ data }) {
       body: JSON.stringify({"exercise_token": data.etoken}),
     })
     const result = await response.json()
+
+    if (result) setLoading(false)
+
     setResults(result)
     setIsComplete(true)
     setSeeResults(true)
-    console.log(result)
     return
   }
   
@@ -36,7 +40,7 @@ export default function Exercise({ data }) {
       <header className='exercise-header'>
         <div className="exercise-innerheader">
           <div className='exercise-header-topic'>
-            <Skill_level level={2} subject={data.subject.toLowerCase()}/>
+            <Skill_level level={data.topic.level} subject={data.subject.toLowerCase()}/>
             <div>{data.topic.title}</div>
           </div>
           <div className='exercise-header-logo'>
@@ -47,7 +51,7 @@ export default function Exercise({ data }) {
           </div>
         </div>
       </header>
-      <Questions subject={data.subject} topic={data.topic.title} questions={questions} qtokens={data.qtokens} etoken={data.etoken} endExercise={endExercise} isComplete={isComplete} results={results} seeResults={seeResults} setSeeResults={setSeeResults}/>
+      <Questions subject={data.subject} topic={data.topic.title} questions={questions} qtokens={data.qtokens} etoken={data.etoken} endExercise={endExercise} isComplete={isComplete} results={results} seeResults={seeResults} setSeeResults={setSeeResults} loading={loading}/>
     </div>
   )
 }
