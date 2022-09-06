@@ -4,8 +4,10 @@ import { useState } from "react"
 import { API_URL } from "../../config";
 import useStore from "../../stores/userStore";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export default function Exercise({ data }) {
+  const router = useRouter()
   const questions = data.questions
   const key = useStore((state) => state.key)
   const [isComplete, setIsComplete] = useState(data.completed)
@@ -40,7 +42,9 @@ export default function Exercise({ data }) {
           <div className='exercise-header-logo'>
             <Image src='/Ilim.svg' alt='' width="50px" height="50px"></Image>
           </div>
-          <div className='exercise-header-button'>Exit</div>
+          <div className="exercise-header-button">
+            <button onClick={() => router.back()}>Exit</button>
+          </div>
         </div>
       </header>
       <Questions subject={data.subject} topic={data.topic.title} questions={questions} qtokens={data.qtokens} etoken={data.etoken} endExercise={endExercise} isComplete={isComplete} results={results} seeResults={seeResults} setSeeResults={setSeeResults}/>
