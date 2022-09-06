@@ -11,23 +11,22 @@ export function useUser() {
     const data = useData((state) => state.data)
 
     const [user, setUser] = useState(null);
-    const [authenticated, setAutenticated] = useState(null);
+    const authenticated = useStore((state) => state.isAuthenticated)
 
     useEffect(() => {
         async function getUserDetails() {
             const { authenticated, user } = await getAuthenticatedUser();
 
             if (authenticated) {
-                login(user, localStorage.getItem("key"));
+                login(localStorage.getItem("key"));
                 // const newdata = await getUserData();
                 // setData(newdata);
             }
 
             setUser(user);
-            setAutenticated(authenticated);
             setLoading(false);
         }
         getUserDetails();
     }, []);
-    return { user, authenticated};
+    return { user, authenticated };
 }

@@ -12,10 +12,10 @@ export default function Questions({ subject, topic, questions, qtokens, etoken, 
     for (let i=0; i<questions.length; i++) {
       if (qtokens[questions[i].id]) {
         if (qtokens[questions[i].id].correct) {
-          x[i+1] = true
+          x[questions[i].id] = true
         }
         else {
-          x[i+1] = false
+          x[questions[i].id] = false
         }
       }
     }

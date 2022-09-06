@@ -21,18 +21,17 @@ const fetcher = async (url, key) => {
 }
 
 export default function PrivateRoute({ children }) {
-    const unprotectedRoutes = ["/login", "/register"];
-    const key = useStore((state) => state.key);
     const router = useRouter();
+    const unprotectedRoutes = ["/login", "/register"];
+    const pathIsProtected = unprotectedRoutes.indexOf(router.pathname) === -1;
+    const key = useStore((state) => state.key);
     const isLoading = useStore((state) => state.isLoading);
     const setLoading = useStore((state) => state.setLoading);
-    const isAuthenticated = useStore((state) => state.isLoggedIn);
+    const isAuthenticated = useStore((state) => state.isAuthenticated);
     const setData = useData((state) => state.setData)
     const userdata = useData((state) => state.data)
 
     const { data, error } = useSWR(isAuthenticated ? [`${API_URL}/api/app/data/`, key] : null, fetcher);
-
-    const pathIsProtected = unprotectedRoutes.indexOf(router.pathname) === -1;
 
     useEffect(() => {
         if (!isLoading && !isAuthenticated && pathIsProtected) {
@@ -41,8 +40,7 @@ export default function PrivateRoute({ children }) {
         }
 
         if (data) setData(data);
-        console.log("refresh")
-
+            
     }, [isLoading, isAuthenticated, pathIsProtected, data]);
 
     if ((isLoading || !isAuthenticated ) && pathIsProtected) {

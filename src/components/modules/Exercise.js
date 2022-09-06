@@ -6,7 +6,7 @@ import useStore from "../../stores/userStore";
 import Image from "next/image";
 
 export default function Exercise({ data }) {
-  const questions = data.exercise.questions
+  const questions = data.questions
   const key = useStore((state) => state.key)
   const [isComplete, setIsComplete] = useState(data.completed)
   const [results, setResults] = useState(data.results)
@@ -34,8 +34,8 @@ export default function Exercise({ data }) {
       <header className='exercise-header'>
         <div className="exercise-innerheader">
           <div className='exercise-header-topic'>
-            <Skill_level level={2} subject={data.exercise.subject.toLowerCase()}/>
-            <div>{data.exercise.topic.title}</div>
+            <Skill_level level={2} subject={data.subject.toLowerCase()}/>
+            <div>{data.topic.title}</div>
           </div>
           <div className='exercise-header-logo'>
             <Image src='/Ilim.svg' alt='' width="50px" height="50px"></Image>
@@ -43,7 +43,7 @@ export default function Exercise({ data }) {
           <div className='exercise-header-button'>Exit</div>
         </div>
       </header>
-      <Questions subject={data.exercise.subject} topic={data.exercise.topic.title} questions={questions} qtokens={data.qtokens} etoken={data.etoken} endExercise={endExercise} isComplete={isComplete} results={results} seeResults={seeResults} setSeeResults={setSeeResults}/>
+      <Questions subject={data.subject} topic={data.topic.title} questions={questions} qtokens={data.qtokens} etoken={data.etoken} endExercise={endExercise} isComplete={isComplete} results={results} seeResults={seeResults} setSeeResults={setSeeResults}/>
     </div>
   )
 }

@@ -42,9 +42,10 @@ export default function LoginPage() {
 
       if (response.ok) {
         const data = await response.json();
-        login(username, data.key);
+        login(data.key);
         const returnedData = await getUserData()
         setData(returnedData)
+        
         Router.push("/")
         setLoading(false)
       }

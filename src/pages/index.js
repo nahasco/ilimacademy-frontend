@@ -7,10 +7,7 @@ import ActivityRings from "../components/ActivityRings"
 import useData from "../stores/useData"
 
 function Dashboard() {
-  const user = useStore((state) => state)
   const data = useData((state) => state.data)
-
-  console.log(data)
 
   function skill_level_find(subject) {
     for (let i = 0; i < 3; i++) {
@@ -22,7 +19,7 @@ function Dashboard() {
   
   return (
   <>
-    <HeaderMain heading={`Hi, ${user.username}`} ></HeaderMain>
+    <HeaderMain heading={`Hi, ${data.username}`} ></HeaderMain>
     <div className="practice-widget-container">
       <div className="practice-widget math-wdgt">
         <div className="practice-widget-title">Math</div>

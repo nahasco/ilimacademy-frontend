@@ -14,7 +14,6 @@ export default async function submitQuestion(data) {
         });
 
         const result = await response.json();
-        console.log(result)
         return result;
     } catch (err) {
         console.log(err);
