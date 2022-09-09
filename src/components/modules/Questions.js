@@ -5,17 +5,17 @@ import submitQuestion from '../../utils/submitQuestion';
 import endExercise from '../../utils/endExercise';
 import Results from './Results';
 
-export default function Questions({ subject, topic, questions, qtokens, etoken, endExercise, isComplete, results, seeResults, setSeeResults }) {
+export default function Questions({ subject, topic, questions, qtokens, etoken, endExercise, isComplete, results, seeResults, setSeeResults, loading }) {
   const [exerciseEnd, setExerciseEnd] = useState(false);
   const [checkQuestion, setCheckQuestion] = useState(() => {
     let x = {}
     for (let i=0; i<questions.length; i++) {
       if (qtokens[questions[i].id]) {
         if (qtokens[questions[i].id].correct) {
-          x[i+1] = true
+          x[questions[i].id] = true
         }
         else {
-          x[i+1] = false
+          x[questions[i].id] = false
         }
       }
     }
@@ -100,6 +100,9 @@ export default function Questions({ subject, topic, questions, qtokens, etoken, 
   return (
     <>
       <main className="question-container">
+     { loading 
+     ? <div>Loading...</div> 
+     : <>
         {seeResults ? <Results results={results} subject={subject} topic={topic}/> :
           <>
             <div className="question-header">
@@ -114,6 +117,7 @@ export default function Questions({ subject, topic, questions, qtokens, etoken, 
             </div>
           </>
         }
+      </>}
       </main>
       <footer className="footer">
         <div className="innerfooter">

@@ -7,16 +7,12 @@ import 'tailwindcss/tailwind.css'
 
 export default function MyApp({ Component, pageProps, router }) {
   // Use the layout defined at the page level, if available
-  const getLayout = Component.getLayout || ((page) => page);
-
-  const unprotectedRoutes = ["/login", "/register"];
-  const login = useStore((state) => state.login);
-  
-  const {data} = useUser();
+  const getLayout = Component.getLayout || ((page) => page);  
+  useUser()
   
   return getLayout(
     <>
-      <PrivateRoute unprotectedRoutes={unprotectedRoutes} data={data}>
+      <PrivateRoute>
         <Head>
           <title>Ilim Academy</title>
         </Head>

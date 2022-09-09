@@ -3,11 +3,13 @@ import useSWR from 'swr'
 import { API_URL } from '../../../config';
 import FullPageLoader from '../../../components/FullPageLoader'
 import Exercise from '../../../components/modules/Exercise';
+import useStore from '../../../stores/userStore';
 
 export default function ExercisePage() {
   const router = useRouter()
   const id = router.query.id
   const key = localStorage.getItem("key");
+  const setLoading = useStore((state) => state.setLoading)
 
   //check if id is a valid number
   const fetcher = async (url, key) => {

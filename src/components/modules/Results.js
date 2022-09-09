@@ -6,6 +6,8 @@ export default function Results({results, subject, topic}) {
     if (!results || results==undefined) {
         return <FullPageLoader />
     }
+
+    console.log(results)
     return (
         <div className="results">
             <div className="scores">
@@ -27,11 +29,11 @@ export default function Results({results, subject, topic}) {
                     <div className="topic-title">{topic}</div>
                     <div className="levels">
                         <div className="old-level">
-                            <Skill_level subject={subject} level={results.old_skill_level}/>
+                            <Skill_level subject={subject} level={results.current_topic_level}/>
                         </div>
                         <RightArrow_icon />
                         <div className="new-level">
-                            <Skill_level subject={subject} level={results.new_skill_level}/>
+                            <Skill_level subject={subject} level={results.new_topic_level}/>
                         </div>
                     </div>
                 </div>

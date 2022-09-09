@@ -1,8 +1,10 @@
 import useSWR from "swr"
 import { API_URL } from "../config";
 import Router from "next/router";
+import useStore from "../stores/userStore";
 
 export default async function practiceExercise(topicID) {
+
     const key = localStorage.getItem("key");
 
     try {
@@ -12,11 +14,12 @@ export default async function practiceExercise(topicID) {
                 Authorization: `Token ${key}`,
             },
         });
-        if (!response.ok) {
-            throw "errorx`x`"
-        }
+
+        if (response.ok) {
         const data = await response.json();
         Router.push(`exercise/${data.exercise_id}/`)
+        }
+
         return;
 
     } catch (err) {
