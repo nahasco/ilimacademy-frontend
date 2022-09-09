@@ -82,6 +82,10 @@
     padding: 1rem;
     border-radius: 1rem;
 
+    &:hover {
+        background-color: #f9f9f9;
+    }
+
     &.selected {
         background-color: var(--secondery);
 
