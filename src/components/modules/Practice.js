@@ -1,9 +1,11 @@
 import ActivityRings from "../ActivityRings"
 import Skill_level from "../Skill_level"
 import {useState} from 'react'
+import useData from "../../stores/useData"
 
 export default function Practice(props) {
     const [selected, setSelected] = useState(1)
+    const data = useData((state) => state.data)
 
     function select(id) {
         setSelected(id)
@@ -49,18 +51,14 @@ export default function Practice(props) {
                 <div className="widget-content">
                     <div className="subject-today-progress">
                         <div className="subject-today-progress-title">Today</div>
-                        <ActivityRings progress={50} subject={props.subject} height="150px" text={true}/>
+                        <ActivityRings progress={(data.progress.todays[`${props.subject.toLowerCase()}_progress`]/data.progress.todays[`${props.subject.toLowerCase()}_total`])*100} subject={props.subject} height="150px" text={true}/>
                     </div>
                     <div className="subject-last-progress">
-                        <div className="subject-last-progress-title">Last 7 Days</div>
+                        <div className="subject-last-progress-title">Last 5 Days</div>
                         <div className="rings-last-7-days">
-                            <ActivityRings progress={50} subject={props.subject} height="37px"/>
-                            <ActivityRings progress={50} subject={props.subject} height="37px"/>
-                            <ActivityRings progress={50} subject={props.subject} height="37px"/>
-                            <ActivityRings progress={50} subject={props.subject} height="37px"/>
-                            <ActivityRings progress={50} subject={props.subject} height="37px"/>
-                            <ActivityRings progress={50} subject={props.subject} height="37px"/>
-                            <ActivityRings progress={50} subject={props.subject} height="37px"/>
+                            {(data.progress.last_5_days).map(ring => {
+                                return <ActivityRings key={ring.id} progress={(ring[`${props.subject.toLowerCase()}_progress`]/ring[`${props.subject.toLowerCase()}_total`])*100} subject={props.subject} height="37px"/>
+                            })}
                         </div>
                     </div>
                 </div>

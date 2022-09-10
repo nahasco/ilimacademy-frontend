@@ -9,6 +9,10 @@ import useData from "../stores/useData"
 function Dashboard() {
   const data = useData((state) => state.data)
 
+  console.log((data.progress.todays.math_progress/data.progress.todays.math_total)*100)
+  console.log((data.progress.todays.iq_progress/data.progress.todays.iq_total)*100)
+  console.log((data.progress.todays.geometry_progress/data.progress.todays.geometry_total)*100)
+  
   function skill_level_find(subject) {
     for (let i = 0; i < 3; i++) {
       if (subject.toLowerCase() == data.skill_level.subjects[i].subject.toLowerCase()) {
@@ -71,7 +75,7 @@ function Dashboard() {
           <button>?</button>
         </div>
         <div className="widget-content">
-          <ActivityRings math={40} iq={25} geometry={67} height={"140px"}/>
+          <ActivityRings math={(data.progress.todays.math_progress/data.progress.todays.math_total)*100} iq={(data.progress.todays.iq_progress/data.progress.todays.iq_total)*100} geometry={(data.progress.todays.geometry_progress/data.progress.todays.geometry_total)*100} height={"140px"}/>
           <div className="rings-keys">
             <div className="key">
               <div className="key-color math"></div>
