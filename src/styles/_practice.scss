@@ -38,7 +38,7 @@
     gap: 1.5rem;
 }
 
-.topic {
+.rows {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -51,7 +51,6 @@
     }
 
     .topic-title {
-        font-size: 17px;
         color: var(--dark-grey);
     }
 
@@ -76,6 +75,7 @@
 }
 
 .topic-skill-level {
+    position: relative;
     padding: 6px;
     border-radius: 9px;
     margin-right: 27px;

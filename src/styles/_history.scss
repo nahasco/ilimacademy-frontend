@@ -1,0 +1,44 @@
+.rows.history {
+    background-color: white;
+    margin-bottom: 1rem;
+}
+
+.end-date {
+    color: var(--grey-disabled);
+}
+
+.results-summary {
+    display: flex;
+    gap: 0.5rem;
+
+    .result {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0.75rem;
+        width: 50px;
+        height: 50px;
+        flex: 1;
+    }
+
+    .correct-num {
+        background-color: transparentize(#0FC069, 0.9);
+        color: #0FC069;
+    }
+
+    .wrong-num {
+        background-color: transparentize(#FE4949, 0.9);
+        color: #FE4949;
+    }
+
+    .total-num {
+        background-color: var(--secondery);
+        color: var(--primary);
+    }
+}
+
+.result-icon {
+    position: absolute;
+    right: -5px;
+    bottom: -5px;
+}

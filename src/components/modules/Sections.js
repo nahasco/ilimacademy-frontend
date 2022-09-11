@@ -76,7 +76,7 @@ function Topic({topic, subject}) {
     }
 
     return(
-        <div className='topic'>
+        <div className='rows'>
             <div className='left'>
                 <div className='topic-skill-level' style={{backgroundColor: `rgba(var(--${subject.toLowerCase()}-dark), 0.07)`}}>
                     <Skill_level subject={subject.toLowerCase()} level={skill_level(topic.id)}/>
