@@ -4,6 +4,8 @@ import useData from '../../stores/useData'
 import Skill_level from '../Skill_level'
 import Link from "next/link"
 import practiceExercise from "../../utils/practiceExercise"
+import useStore from '../../stores/userStore'
+import FullPageLoader from '../FullPageLoader'
 
 export default function Sections({subject}) {
     const data = useData((state) => state.data)
@@ -64,6 +66,8 @@ function Topics({topics, subject}) {
 
 function Topic({topic, subject}) {
     const data = useData((state) => state.data)
+    const setLoading = useStore((state) => state.setLoading)
+    const loading = useStore((state) => state.loading)
 
     function skill_level(id){
         const topics = data.skill_level.topics
@@ -74,6 +78,8 @@ function Topic({topic, subject}) {
         }
         return console.log("topic level not found")
     }
+
+    if (loading) return <FullPageLoader/>
 
     return(
         <div className='rows'>
@@ -90,7 +96,7 @@ function Topic({topic, subject}) {
                     <Notes_icon/>
                     Notes
                 </button>
-                <button onClick={() => practiceExercise(topic.id)} className="outlined">Practice</button>
+                <button onClick={() => practiceExercise(topic.id, setLoading)} className="outlined">Practice</button>
             </div>
         </div>
     )

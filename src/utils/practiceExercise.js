@@ -3,7 +3,8 @@ import { API_URL } from "../config";
 import Router from "next/router";
 import useStore from "../stores/userStore";
 
-export default async function practiceExercise(topicID) {
+export default async function practiceExercise(topicID, setLoading) {
+    setLoading(true)
 
     const key = localStorage.getItem("key");
 
@@ -19,6 +20,8 @@ export default async function practiceExercise(topicID) {
         const data = await response.json();
         Router.push(`exercise/${data.exercise_id}/`)
         }
+        
+        response && setLoading(false)
 
         return;
 
