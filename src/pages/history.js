@@ -24,7 +24,7 @@ export default function HistoryPage() {
             <HeaderMain heading={"History"}></HeaderMain>
             {data.history.map(history => {
                 return (
-                    <div className='rows history'>
+                    <div key={history.id} className='rows history'>
                         <div className='left'>
                             <div className='topic-skill-level' style={{backgroundColor: `rgba(var(--${history.subject.toLowerCase()}-dark), 0.07)`}}>
                                 <Skill_level subject={history.subject.toLowerCase()} level={history.new_skill_level}/>
