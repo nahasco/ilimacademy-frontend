@@ -70,6 +70,8 @@
             align-items: center;
             font-size: 12px;
             gap: 0.3rem;
+            color: var(--primary);
+            justify-content: center;
         }
     }
 }
@@ -201,5 +203,50 @@
             width: 175px;
             height: 175px;
         }
+    }
+}
+
+@media only screen and (max-width: 1040px) {
+    .practice-top {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .recommended-practice .widget-content {
+        flex-direction: column;
+        padding: 0;
+
+        .skill-level-icon {
+            width: 8rem;
+            height: 7rem;
+        }
+    }
+
+    .topics {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .rows.practice  {    
+        padding: 0;
+
+        &:hover {
+            background-color: transparent;
+        }
+        .right {
+            gap: 1rem;
+            margin-top: 1rem;
+            width: 100%;
+
+            button {
+                width: 100%;
+            }
+        }
+    }
+
+    .results-summary {
+        width: 100%;
     }
 }

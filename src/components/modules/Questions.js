@@ -99,25 +99,27 @@ export default function Questions({ subject, topic, questions, qtokens, etoken, 
 
   return (
     <>
-      <main className="question-container">
-     { loading 
-     ? <div>Loading...</div> 
-     : <>
-        {seeResults ? <Results results={results} subject={subject} topic={topic}/> :
-          <>
-            <div className="question-header">
-              <div className="question-title">Question {currentQuestion+1}</div>
-              <button className="question-stuck">Stuck</button>
-            </div>
-            <div className="question-content">{question.content}</div>
-            <div className="question-choices">
-              {question.choices.map(choice => {
-                return <Choice key={choice.id} setSelectedChoice={setSelectedChoice} selectedChoice={selectedChoice} question={question} choice={choice} isSubmitted={isSubmitted} checkQuestion={checkQuestion} setCheckQuestion={setCheckQuestion}/>
-              })}
-            </div>
-          </>
-        }
-      </>}
+      <main className='main-container'>
+        <div className="question-container">
+          { loading 
+          ? <div>Loading...</div> 
+          : <>
+              {seeResults ? <Results results={results} subject={subject} topic={topic}/> :
+                <>
+                  {/* <div className="question-header">
+                    <div className="question-title">Question {currentQuestion+1}</div>
+                    <button className="question-stuck">Stuck</button>
+                  </div> */}
+                  <div className="question-content">{question.content}</div>
+                  <div className="question-choices">
+                    {question.choices.map(choice => {
+                      return <Choice key={choice.id} setSelectedChoice={setSelectedChoice} selectedChoice={selectedChoice} question={question} choice={choice} isSubmitted={isSubmitted} checkQuestion={checkQuestion} setCheckQuestion={setCheckQuestion}/>
+                    })}
+                  </div>
+                </>
+              }
+            </>}
+        </div>
       </main>
       <footer className="footer">
         <div className="innerfooter">

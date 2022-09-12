@@ -2,21 +2,21 @@
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .practice-widget {
     background-color: white;
     border-radius: 1rem;
-    padding: 2.5rem;
+    padding: 2rem;
     flex-grow: 1;
 }
 
 .practice-widget-title {
     color: #25114E;
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 500;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .practice-widget-button {
@@ -113,6 +113,16 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    align-items: center;
+}
+
+.skill-level-icon-wdgt {
+    display: flex;
+    justify-content: center;
+
+    .skill-level-icon {
+        width: 4rem;
+    }
 }
 
 .skill-level-container-wdgt {

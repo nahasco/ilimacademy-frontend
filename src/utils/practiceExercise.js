@@ -17,9 +17,9 @@ export default async function practiceExercise(topicID, setLoading) {
         });
 
         if (response.ok) {
-        const data = await response.json();
-        Router.push(`exercise/${data.exercise_id}/`)
-        }
+            const data = await response.json();
+            Router.push(`exercise/${data.exercise_id}/`)
+            }
         
         response && setLoading(false)
 
@@ -27,6 +27,7 @@ export default async function practiceExercise(topicID, setLoading) {
 
     } catch (err) {
         console.log(err);
+        setLoading(false)
         return;
     }
 }

@@ -6,8 +6,6 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-
-
 export default function Tabs() {
     const [selectedIndex, setSelectedIndex] = useState()
 
@@ -38,7 +36,7 @@ export default function Tabs() {
             console.log('Changed selected tab to:', index)
         }}>
 
-        <Tab.List className="flex space-x-1 rounded-xl bg-white p-1.5 -mt-8 mb-8">
+        <Tab.List className="flex space-x-1 rounded-xl bg-white p-1.5 mb-8">
             <Tab
             className={({ selected }) =>
                 classNames(

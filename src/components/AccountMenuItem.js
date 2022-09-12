@@ -48,7 +48,7 @@ export default function DropMenu(props) {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex justify-center rounded-2xl border-gray-300 shadow-sm p-3 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-offset-2 focus:ring-offset-gray-100 focus-visible:ring-primary">
+        <Menu.Button className="inline-flex justify-center rounded-2xl border-gray-300 p-3 bg-white text-sm font-medium text-gray-700 focus:outline-none focus:ring-offset-2 focus:ring-offset-gray-100 focus-visible:ring-primary">
           {props.icon}
         </Menu.Button>
       </div>

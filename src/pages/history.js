@@ -30,12 +30,13 @@ export default function HistoryPage() {
                                 <Skill_level subject={history.subject.toLowerCase()} level={history.new_skill_level}/>
                                 <Result_icon result={history.result}/>
                             </div>
-                            <div className='topic-title'>
-                                {history.topic.title}
+                            <div className='topic-title-date'>
+                                <div className="topic-title">{history.topic.title}</div>
+                                <div className="end-date under-title">{history.end_date}</div>
                             </div>
                         </div>
                         <div className='right'>
-                            <div className="end-date">{history.end_date}</div>
+                            <div className="end-date standalone">{history.end_date}</div>
                             <div className="results-summary">
                                 <div className="result correct-num">{history.score}</div>
                                 <div className="result wrong-num">{history.total - history.score}</div>

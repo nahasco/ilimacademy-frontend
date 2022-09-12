@@ -82,7 +82,7 @@ function Topic({topic, subject}) {
     if (loading) return <FullPageLoader/>
 
     return(
-        <div className='rows'>
+        <div className='rows practice'>
             <div className='left'>
                 <div className='topic-skill-level' style={{backgroundColor: `rgba(var(--${subject.toLowerCase()}-dark), 0.07)`}}>
                     <Skill_level subject={subject.toLowerCase()} level={skill_level(topic.id)}/>
@@ -96,7 +96,7 @@ function Topic({topic, subject}) {
                     <Notes_icon/>
                     Notes
                 </button>
-                <button onClick={() => practiceExercise(topic.id, setLoading)} className="outlined">Practice</button>
+                <button onClick={() => practiceExercise(topic.id, setLoading)} className="outlined practice-btn">Practice</button>
             </div>
         </div>
     )

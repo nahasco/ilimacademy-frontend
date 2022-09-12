@@ -8,10 +8,6 @@ import useData from "../stores/useData"
 
 function Dashboard() {
   const data = useData((state) => state.data)
-
-  console.log((data.progress.todays.math_progress/data.progress.todays.math_total)*100)
-  console.log((data.progress.todays.iq_progress/data.progress.todays.iq_total)*100)
-  console.log((data.progress.todays.geometry_progress/data.progress.todays.geometry_total)*100)
   
   function skill_level_find(subject) {
     for (let i = 0; i < 3; i++) {
@@ -27,15 +23,15 @@ function Dashboard() {
     <div className="practice-widget-container">
       <div className="practice-widget math-wdgt">
         <div className="practice-widget-title">Math</div>
-        <Link href="/practice/math"><button className="practice-widget-button">Start Practicing</button></Link>
+        <Link href="/practice/math"><button className="outlined">Practice</button></Link>
       </div>
       <div className="practice-widget iq-wdgt">
         <div className="practice-widget-title">IQ</div>
-        <Link href="/practice/iq"><button className="practice-widget-button">Start Practicing</button></Link>
+        <Link href="/practice/iq"><button className="outlined">Practice</button></Link>
       </div>
       <div className="practice-widget geometry-wdgt">
         <div className="practice-widget-title">Geometry</div>
-        <Link href="/practice/geometry"><button className="practice-widget-button">Start Practicing</button></Link>
+        <Link href="/practice/geometry"><button className="outlined">Practice</button></Link>
       </div>
     </div>
 
@@ -53,7 +49,7 @@ function Dashboard() {
           <div className="widget-title">Skill Level</div>
           <button>?</button>
         </div>
-        <div className="skill-level-wdgt-content">
+        <div className="skill-level-wdgt-content widget-content">
           <div className="skill-level-container-wdgt">
             <div className="skill-level-icon-wdgt"><Skill_level level={skill_level_find("math")} subject="math"/></div>
             <div className="skill-level-title-wdgt">Math</div>

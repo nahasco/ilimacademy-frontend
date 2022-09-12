@@ -42,3 +42,33 @@
     right: -5px;
     bottom: -5px;
 }
+
+
+@media only screen and (min-width: 1040px) {
+    .end-date.under-title {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 1040px) {
+    .end-date.standalone {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .rows.history .right {
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1rem;
+        width: 100%;
+
+        button {
+            width: 100%;
+        }
+    }
+
+    .results-summary {
+        width: 100%;
+    }
+}
