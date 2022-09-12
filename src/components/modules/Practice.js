@@ -55,13 +55,13 @@ export default function Practice(props) {
                 <div className="widget-content">
                     <div className="subject-today-progress">
                         <div className="subject-today-progress-title">Today</div>
-                        <ActivityRings progress={(data.progress.todays[`${props.subject.toLowerCase()}_progress`]/data.progress.todays[`${props.subject.toLowerCase()}_total`])*100} subject={props.subject} height="150px" text={true}/>
+                        <ActivityRings total={data.progress.todays[`${props.subject.toLowerCase()}_progress`]} progress={(data.progress.todays[`${props.subject.toLowerCase()}_progress`]/data.progress.todays[`${props.subject.toLowerCase()}_total`])*100} subject={props.subject} height="150px" text={true}/>
                     </div>
                     <div className="subject-last-progress">
                         <div className="subject-last-progress-title">Last 5 Days</div>
                         <div className="rings-last-7-days">
                             {(data.progress.last_5_days).map(ring => {
-                                return <ActivityRings key={ring.id} progress={(ring[`${props.subject.toLowerCase()}_progress`]/ring[`${props.subject.toLowerCase()}_total`])*100} subject={props.subject} height="37px"/>
+                                return <ActivityRings key={ring.id} total={ring[`${props.subject.toLowerCase()}_progress`]} progress={(ring[`${props.subject.toLowerCase()}_progress`]/ring[`${props.subject.toLowerCase()}_total`])*100} subject={props.subject} height="37px" text={true}/>
                             })}
                         </div>
                     </div>
