@@ -1,6 +1,7 @@
 
 export default function ActivityRings(props) {
-  if (!props.math && !props.iq && !props.geometry) {
+  if (!props.math && !props.iq && !props.geometry && props.subject) {
+    
     const subject = props.subject.toLowerCase()
     
     return(
