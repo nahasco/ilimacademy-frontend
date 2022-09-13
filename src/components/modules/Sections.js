@@ -72,10 +72,13 @@ function Topic({topic, subject}) {
     const loading = useStore((state) => state.loading)
     let [isOpen, setIsOpen] = useState(false)
     const key = useStore((state) => state.key)
+    console.log(data)
     const [notes, setNotes] = useState(() => {
         let x = {}
-        for (let i=0; i<data.notes.length; i++) {
-            x[data.notes[i].topic.id] = data.notes[i].content
+        if (data.notes) {
+            for (let i=0; i<data.notes.length; i++) {
+                x[data.notes[i].topic.id] = data.notes[i].content
+            }
         }
         return x
     })
