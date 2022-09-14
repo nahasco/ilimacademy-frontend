@@ -33,7 +33,6 @@ export default function Tabs() {
             } else if (index == 2) {
                 Router.push("/practice/geometry")
             }
-            console.log('Changed selected tab to:', index)
         }}>
 
         <Tab.List className="flex space-x-1 rounded-xl bg-white p-1.5 mb-8">

@@ -7,6 +7,7 @@ import Link from "next/link";
 export default function RegisterPage() {
     const setLoading = useStore((state) => state.setLoading);
     const isLoading = useStore((state) => state.isLoading);
+    const [error, setError] = useState(null)
 
     const [formData, setFormData] = useState({
         first_name: "",
@@ -40,7 +41,21 @@ export default function RegisterPage() {
             });
 
             if (response.ok) Router.push("/login")
+            else if (response.status == 400) {
+                const error = await response.json()
+                let errorMessage = ""
+                for (let key in error){
+                  console.log(error[key])
+                  errorMessage = errorMessage + (`${error[key]}\n`)
+                }
+                setError(errorMessage) 
+              } else {
+                setError("We could'nt perform this action right now, please try again later.") 
+              }
+
+
             if (response) setLoading(false)
+
 
         } catch (error) {
             console.log(error);
@@ -57,6 +72,7 @@ export default function RegisterPage() {
                 <>
                 <h1 className="page-title">Register</h1>
                 <div className="account-massage">Already have an account? <Link href="/login">Login</Link></div>
+                { error && <div className="error">{error}</div>}
                 <form onSubmit={onSubmit}>
                     <div className="inputs">
                     <div className="form-group first-name">

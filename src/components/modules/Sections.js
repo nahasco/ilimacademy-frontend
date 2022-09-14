@@ -72,7 +72,6 @@ function Topic({topic, subject}) {
     const loading = useStore((state) => state.loading)
     let [isOpen, setIsOpen] = useState(false)
     const key = useStore((state) => state.key)
-    console.log(data)
     const [notes, setNotes] = useState(() => {
         let x = {}
         if (data.notes) {
@@ -115,7 +114,7 @@ function Topic({topic, subject}) {
                 "Content-type": "application/json",
                 Authorization: "Token " + key
             },
-            body: JSON.stringify({"topic": topic.id, "content": notes[topic.id]}),
+            body: JSON.stringify({"topic": topic.id, "content": notes[topic.id].trim()}),
         })
     }
 

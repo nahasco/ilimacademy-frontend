@@ -7,7 +7,6 @@ export default function Results({results, subject, topic}) {
         return <FullPageLoader />
     }
 
-    console.log(results)
     return (
         <div className="results">
             <div className="scores">

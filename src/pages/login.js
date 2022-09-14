@@ -13,6 +13,7 @@ export default function LoginPage() {
   const datastore = useData((state) => state.data)
   const setLoading = useStore((state) => state.setLoading);
   const isLoading = useStore((state) => state.isLoading);
+  const [error, setError] = useState()
 
   const [formData, setFormData] = useState({
     username: "",
@@ -48,6 +49,17 @@ export default function LoginPage() {
         
         Router.push("/")
         setLoading(false)
+
+      } else if (response.status == 400) {
+        const error = await response.json()
+        let errorMessage = ""
+        for (let key in error){
+          console.log(error[key])
+          errorMessage = errorMessage + (`${error[key]}\n`)
+        }
+        setError(errorMessage) 
+      } else {
+        setError("We could'nt perform this action right now, please try again later.") 
       }
 
       if (response) {setLoading(false)}
@@ -67,6 +79,7 @@ export default function LoginPage() {
             <>
             <h1 className="page-title">Login</h1>
             <div className="account-massage">Don't have an account? <Link href="/register">Register</Link></div>
+            {error  && <div className="error">{error}</div>}
             <form onSubmit={onSubmit}>
                 <div className="inputs">
                   <div className="form-group first-name">

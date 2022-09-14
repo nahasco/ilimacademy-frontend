@@ -35,4 +35,16 @@
 
 .account-massage {
     text-align: center;
+    color: var(--grey-disabled);
+}
+
+.error {
+    color: var(--incorrect-red);
+    background-color: var(--incorrect-red-light);
+    border: solid 1px var(--incorrect-red);
+    padding: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    white-space: pre-wrap;
 }
