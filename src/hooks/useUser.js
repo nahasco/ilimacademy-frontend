@@ -7,26 +7,21 @@ export function useUser() {
 
     const login = useStore((state) => state.login);
     const setLoading = useStore((state) => state.setLoading);
-    const setData = useData((state) => state.setData);
-    const data = useData((state) => state.data)
-
-    const [user, setUser] = useState(null);
     const authenticated = useStore((state) => state.isAuthenticated)
+    const [fatalError, setFatalError] = useState(false)
 
     useEffect(() => {
         async function getUserDetails() {
-            const { authenticated, user } = await getAuthenticatedUser();
+            const { authenticated, user, error } = await getAuthenticatedUser();
 
-            if (authenticated) {
-                login(localStorage.getItem("key"));
-                // const newdata = await getUserData();
-                // setData(newdata);
-            }
+            if (error) setFatalError(true)
 
-            setUser(user);
+            if (authenticated) login(localStorage.getItem("key"));
+
             setLoading(false);
         }
         getUserDetails();
     }, []);
-    return { user, authenticated };
+
+    return { authenticated, fatalError };
 }

@@ -1,7 +1,7 @@
 import { API_URL } from "../config";
 
 export async function getAuthenticatedUser() {
-    const defaultReturnObject = { authenticated: false, user: null };
+    const defaultReturnObject = { authenticated: false };
 
     try {
         const token = localStorage.getItem("key");
@@ -17,15 +17,15 @@ export async function getAuthenticatedUser() {
                 Authorization: `Token ${token}`,
             },
         });
-        const data = await response.json();
 
         let authenticated;
         response.ok ? (authenticated = true) : (authenticated = false);
         
-        return { authenticated: authenticated, user: data.username };
-    } catch (err) {
-        console.log(err);
-        return defaultReturnObject;
+        return { authenticated: authenticated };
+
+    } catch (error) {
+        console.log(error);
+        return { error: true };
     }
 }
 
@@ -59,8 +59,7 @@ export async function getUserData() {
 
         const data = await response.json();
         return data;
-    } catch (err) {
-        console.log(err);
-        return;
+    } catch (error) {
+        console.log(error);
     }
 }
