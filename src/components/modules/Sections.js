@@ -68,8 +68,7 @@ function Topics({topics, subject}) {
 
 function Topic({topic, subject}) {
     const data = useData((state) => state.data)
-    const setLoading = useStore((state) => state.setLoading)
-    const loading = useStore((state) => state.loading)
+    const [loading, setLoading] = useState(false)
     let [isOpen, setIsOpen] = useState(false)
     const key = useStore((state) => state.key)
     const [notes, setNotes] = useState(() => {
@@ -91,8 +90,6 @@ function Topic({topic, subject}) {
         }
         return console.log("topic level not found")
     }
-
-    if (loading) return <FullPageLoader/>
 
     function onChange(event) {
         setNotes({
@@ -146,7 +143,7 @@ function Topic({topic, subject}) {
                         <Notes_icon/>
                         Notes
                     </button>
-                    <button onClick={() => practiceExercise(topic.id, setLoading)} className="outlined practice-btn">Practice</button>
+                    <button onClick={() => practiceExercise(topic.id, setLoading)} className="outlined practice-btn">{loading ? "Loading..." : "Practice"}</button>
                 </div>
             </div>
         </>

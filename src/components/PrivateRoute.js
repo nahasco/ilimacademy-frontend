@@ -42,7 +42,7 @@ export default function PrivateRoute({ children }) {
     }, [isLoading, authenticated, pathIsProtected, data]);
 
     if (fatalError || error) return <div>Server error</div>;
-    if (((isLoading || !authenticated ) && pathIsProtected) || (authenticated && !userdata && !error)) return <FullPageLoader />;
+    if ((( isLoading || !authenticated ) && pathIsProtected) || (authenticated && !userdata && !error)) return <FullPageLoader />;
 
     return children;
 }

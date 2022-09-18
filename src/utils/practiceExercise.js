@@ -20,9 +20,7 @@ export default async function practiceExercise(topicID, setLoading) {
             const data = await response.json();
             Router.push(`exercise/${data.exercise_id}/`)
             }
-        
-        response && setLoading(false)
-
+            
         return;
 
     } catch (err) {
