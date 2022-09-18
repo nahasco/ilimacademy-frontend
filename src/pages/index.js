@@ -19,7 +19,7 @@ function Dashboard() {
   
   return (
   <>
-    <HeaderMain heading={`Hi, ${data.username}`} ></HeaderMain>
+    <HeaderMain heading={`Hi, ${data.user.username}`} ></HeaderMain>
     <div className="practice-widget-container">
       <div className="practice-widget math-wdgt">
         <div className="practice-widget-title">Math</div>
