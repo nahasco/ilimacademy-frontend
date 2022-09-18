@@ -4,6 +4,7 @@ import Choice from './Choice';
 import submitQuestion from '../../utils/submitQuestion';
 import endExercise from '../../utils/endExercise';
 import Results from './Results';
+import { InlineTex } from 'react-tex';
 
 export default function Questions({ subject, topic, questions, qtokens, etoken, endExercise, isComplete, results, seeResults, setSeeResults, loading }) {
   const [exerciseEnd, setExerciseEnd] = useState(false);
@@ -97,6 +98,10 @@ export default function Questions({ subject, topic, questions, qtokens, etoken, 
     return <button onClick={() => submit()} disabled={selectedChoice[question.id] == undefined} className="question-check-button contained">Check Answer</button>
   }
 
+  const content = `
+  This is inline $$\int_{a}^{b} f(x)dx = F(b) - F(a)$$ latex string
+  $$\int_{a}^{b} f(x)dx = F(b) - F(a)$$
+  `;
   return (
     <>
       <main className='main-container'>
@@ -110,7 +115,7 @@ export default function Questions({ subject, topic, questions, qtokens, etoken, 
                     <div className="question-title">Question {currentQuestion+1}</div>
                     <button className="question-stuck">Stuck</button>
                   </div> */}
-                  <div className="question-content">{question.content}</div>
+                  <div><InlineTex texContent={question.content}/></div>
                   <div className="question-choices">
                     {question.choices.map(choice => {
                       return <Choice key={choice.id} setSelectedChoice={setSelectedChoice} selectedChoice={selectedChoice} question={question} choice={choice} isSubmitted={isSubmitted} checkQuestion={checkQuestion} setCheckQuestion={setCheckQuestion}/>
