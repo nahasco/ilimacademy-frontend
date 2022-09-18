@@ -27,7 +27,6 @@ export default async function practiceExercise(topicID, setLoading) {
 
     } catch (err) {
         console.log(err);
-        setLoading(false)
         return;
     }
 }
