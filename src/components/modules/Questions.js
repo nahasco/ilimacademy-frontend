@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
 import QuestionsPagination from './QuestionsPagination';
 import Choice from './Choice';
-import submitQuestion from '../../utils/submitQuestion';
 import endExercise from '../../utils/endExercise';
 import Results from './Results';
 import { InlineTex } from 'react-tex';
+import { API_URL } from '../../config';
 
 export default function Questions({ subject, topic, questions, qtokens, etoken, endExercise, isComplete, results, seeResults, setSeeResults, loading }) {
   const [exerciseEnd, setExerciseEnd] = useState(false);
+  const [loadingQuestion, setLoadingQuestion] = useState(false)
   const [checkQuestion, setCheckQuestion] = useState(() => {
     let x = {}
     for (let i=0; i<questions.length; i++) {
@@ -35,14 +36,8 @@ export default function Questions({ subject, topic, questions, qtokens, etoken, 
 
   const [currentQuestion, setCurrentQuestion] = useState(() => {
     for (let i=0; i<questions.length; i++) {
-      if (qtokens[questions[i].id]) {
-        if(!qtokens[questions[i+1].id]) {
-          return i+1
-        }
-      } else {
-        return 0
-      }
-      return questions.length - 1
+      if (!qtokens[questions[i].id]) return i
+      if (i==questions.length-1) return questions.length-1
     }
   });
 
@@ -68,20 +63,44 @@ export default function Questions({ subject, topic, questions, qtokens, etoken, 
     setCurrentQuestion(prevState => prevState + 1)
   }
 
-  function submit() {
-    setIsSubmitted({
-      ...isSubmitted,
-      [question.id]: true
-    })
+  async function submitQuestion() {
+    setLoadingQuestion(true)
+
     const data = {
       question_id: question.id,
       selected_choice_id: selectedChoice[question.id],
       exercise_token: etoken
     }
-    submitQuestion(data);
+
+    try {
+      const token = localStorage.getItem("key");
+
+      const response = await fetch(`${API_URL}/api/app/question/submit/`, {
+          method: "POST",
+          headers: {
+              "Content-type": "application/json",
+              Authorization: `Token ${token}`,
+          },
+          body: JSON.stringify(data),
+      });
+
+      if (response) setLoadingQuestion(false)
+
+      if (response.ok) {
+        setIsSubmitted({
+          ...isSubmitted,
+          [question.id]: true
+        })
+      }
+
+    } catch (err) {
+        console.log(err);
+        return;
+    } 
   } 
 
   function footerButton() {
+    if (loadingQuestion) return <button className="contained">Loading...</button>
     if (isComplete) {
       if (!seeResults) {
         return <button onClick={() => {setSeeResults(true); setCurrentQuestion();}} className="question-next-button contained">View Results</button> 
@@ -95,7 +114,7 @@ export default function Questions({ subject, topic, questions, qtokens, etoken, 
       }
       return <button onClick={() => nextQuestion()} className="question-next-button contained">Next Question</button>
     }
-    return <button onClick={() => submit()} disabled={selectedChoice[question.id] == undefined} className="question-check-button contained">Check Answer</button>
+    return <button onClick={() => submitQuestion()} disabled={selectedChoice[question.id] == undefined} className="question-check-button contained">Check Answer</button>
   }
 
   const content = `
