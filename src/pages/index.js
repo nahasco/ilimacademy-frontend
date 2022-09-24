@@ -5,6 +5,7 @@ import Skill_level from "../components/Skill_level"
 import useStore from "../stores/userStore"
 import ActivityRings from "../components/ActivityRings"
 import useData from "../stores/useData"
+import AreaGraph from "../components/AreaGraph"
 
 function Dashboard() {
   const data = useData((state) => state.data)
@@ -41,7 +42,9 @@ function Dashboard() {
           <div className="widget-title">Progress</div>
           <button>?</button>
         </div>
-        <div className="underdev">This feature is under development</div>
+        <div className="widget-content">
+          <AreaGraph data={data.progress_history}/>
+        </div>
       </div>
 
       <div className="widget skill-level-wdgt">

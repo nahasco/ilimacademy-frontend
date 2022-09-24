@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import QuestionsPagination from './QuestionsPagination';
 import Choice from './Choice';
-import endExercise from '../../utils/endExercise';
 import Results from './Results';
 import { InlineTex } from 'react-tex';
 import { API_URL } from '../../config';
@@ -100,7 +99,7 @@ export default function Questions({ subject, topic, questions, qtokens, etoken, 
   } 
 
   function footerButton() {
-    if (loadingQuestion) return <button className="contained">Loading...</button>
+    if (loadingQuestion || loading) return <button className="contained">Loading...</button>
     if (isComplete) {
       if (!seeResults) {
         return <button onClick={() => {setSeeResults(true); setCurrentQuestion();}} className="question-next-button contained">View Results</button> 

@@ -13,7 +13,7 @@
 }
 
 .practice-widget-title {
-    color: #25114E;
+    color: var(--dark-grey);
     font-size: 1.75rem;
     font-weight: 500;
     margin-bottom: 1.5rem;
@@ -22,7 +22,7 @@
 .practice-widget-button {
     background-color: transparent;
     border: solid 2px var(--primary);
-    color: var(--primary);
+    color: var(--dark-grey);
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     font-family: 'Poppins', sans-serif;
@@ -55,7 +55,11 @@
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: 1fr;
-}  
+} 
+
+.progress-wdgt {
+    height: 400px;
+}
 
 @media screen and (min-width: 1024px) {
     .widgets-container {
@@ -72,7 +76,7 @@
         
     }
     
-    .progress-wdgt { grid-area: progress }
+    .progress-wdgt { grid-area: progress; height: auto; }
     .skill-level-wdgt { grid-area: skill }
     .todays-wdgt { grid-area: todays }
     .streak-wdgt { grid-area: streak }
@@ -135,4 +139,8 @@
 
 .underdev {
     color: var(--grey-disabled);
+}
+
+.graphwrapper {
+    border: none;
 }
