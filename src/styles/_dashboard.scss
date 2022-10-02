@@ -144,3 +144,18 @@
 .graphwrapper {
     border: none;
 }
+
+.streak-wdgt .widget-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.streak-number {
+    font-size: 80pt;
+    line-height: 80pt;
+    font-weight: 500;
+    color: var(--primary);
+}

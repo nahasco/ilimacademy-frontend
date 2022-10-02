@@ -96,7 +96,10 @@ function Dashboard() {
           <div className="widget-title">Login Streak</div>
           <button>?</button>
         </div>
-        <div className="underdev">This feature is underdevelopment</div>
+        <div className="widget-content">
+          <div className="streak-number">{data.streak.number}</div>
+          <div>Days</div>
+        </div>
       </div>
     </div>
   </>
