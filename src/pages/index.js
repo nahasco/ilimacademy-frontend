@@ -6,7 +6,8 @@ import useStore from "../stores/userStore"
 import ActivityRings from "../components/ActivityRings"
 import useData from "../stores/useData"
 import AreaGraph from "../components/AreaGraph"
-
+import { Button } from "../components/Button"
+import Router from "next/router"
 function Dashboard() {
   const data = useData((state) => state.data)
   
@@ -24,15 +25,15 @@ function Dashboard() {
     <div className="practice-widget-container">
       <div className="practice-widget math-wdgt">
         <div className="practice-widget-title">Math</div>
-        <Link href="/practice/math"><button className="outlined">Practice</button></Link>
+        <Button onClick={() => Router.push("/practice/math")} buttonStyle="btn--primary--outline" buttonSize="btn--small">Practice</Button>
       </div>
       <div className="practice-widget iq-wdgt">
         <div className="practice-widget-title">IQ</div>
-        <Link href="/practice/iq"><button className="outlined">Practice</button></Link>
+        <Button onClick={() => Router.push("/practice/iq")} buttonStyle="btn--primary--outline" buttonSize="btn--small">Practice</Button>
       </div>
       <div className="practice-widget geometry-wdgt">
         <div className="practice-widget-title">Geometry</div>
-        <Link href="/practice/geometry"><button className="outlined">Practice</button></Link>
+        <Button onClick={() => Router.push("/practice/geometry")} buttonStyle="btn--primary--outline" buttonSize="btn--small">Practice</Button>
       </div>
     </div>
 

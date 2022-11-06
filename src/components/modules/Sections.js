@@ -8,6 +8,7 @@ import useStore from '../../stores/userStore'
 import FullPageLoader from '../FullPageLoader'
 import Popup from './Popup'
 import { API_URL } from '../../config'
+import { Button } from '../Button'
 
 export default function Sections({subject}) {
     const data = useData((state) => state.data)
@@ -143,7 +144,8 @@ function Topic({topic, subject}) {
                         <Notes_icon/>
                         Notes
                     </button>
-                    <button onClick={() => practiceExercise(topic.id, setLoading)} className="outlined practice-btn">{loading ? "Loading..." : "Practice"}</button>
+                    <Button onClick={() => practiceExercise(topic.id, setLoading)} buttonStyle={"btn--primary--outline"} buttonSize={"btn--small"}>{loading ? "Loading..." : "Practice"}</Button>
+                    {/* <button onClick={() => practiceExercise(topic.id, setLoading)} className="outlined practice-btn">{loading ? "Loading..." : "Practice"}</button> */}
                 </div>
             </div>
         </>

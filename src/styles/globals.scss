@@ -38,11 +38,11 @@ body {
     width: 100%;
 }
 
-input {
-    padding: 1rem;
-    border-radius: 0.5rem !important;
-    border: solid 1px var(--grey-disabled) !important;
-}
+// input {
+//     padding: 1rem;
+//     border-radius: 0.5rem !important;
+//     border: solid 1px var(--grey-disabled) !important;
+// }
 
 a {
     color: var(--primary) !important;
@@ -67,34 +67,47 @@ a {
     align-items: center;
 }
 
-button{
+.btn {
     box-sizing: border-box;
+    border-radius: 0.5rem;
 
-    &.contained {
+    &.btn--primary--solid {
         background-color: var(--primary);
         color: white;
-        padding: 0.5rem 1.5rem;
-        border-radius: 0.5rem;
-
-        &:disabled {
-            background-color: #e8e8e8;
-        }
     }
 
-    &.outlined {
+    &.btn--primary--outline {
         background-color: transparent;
-        color: var(--primary);
         border: solid 2px var(--primary);
-        padding: 0.25rem 1.5rem;
-        border-radius: 0.5rem;
+        color: var(--primary);
+    }
+
+    &.btn--secondery--solid {
+        background-color: var(--secondery);
+        color: var(--primary);
+    }
+
+    &.btn--small {
+        padding: 0.25rem 1.25rem;
+    }
+
+    &.btn--medium {
+        padding: 0.5rem 1.5rem;
+    }
+
+    &.btn--large {
+        padding: 0.75rem 2rem;
+    }
+
+    &.btn--full {
+        padding: 2rem 0;
+        width: 100%;
     }
 
     &:disabled {
         pointer-events: none;
-    }
-
-    &.stretch {
-        width: 100%;
+        background-color: #e8e8e8;
+        border: none;
     }
 }
 
@@ -108,11 +121,11 @@ button{
     flex-wrap: wrap;
 }
 
-input:focus-within {
-    outline: none !important;
-    border: 0 none;
-    box-shadow: none;
-}
+// input:focus-within {
+//     outline: none !important;
+//     border: 0 none;
+//     box-shadow: none;
+// }
 
 .mobile-header {
     display: none;

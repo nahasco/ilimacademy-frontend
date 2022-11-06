@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Router from "next/router.js";
+import { Button } from "../components/Button.js";
 import HeaderMain from "../components/Layout/Header.js";
 import Layout from "../components/Layout/Layout";
 import Skill_level from "../components/Skill_level.js";
@@ -42,7 +43,7 @@ export default function HistoryPage() {
                                 <div className="result wrong-num">{history.total - history.score}</div>
                                 <div className="result total-num">{Math.round(history.score/history.total * 100)}%</div>
                             </div>
-                            <button onClick={() => Router.push(`practice/exercise/${history.id}`)} className="outlined">View</button>
+                            <Button onClick={() => Router.push(`practice/exercise/${history.id}`)} buttonStyle="btn--primary--outline" buttonSize="btn--small">View</Button>
                         </div>
                     </div>
                 )

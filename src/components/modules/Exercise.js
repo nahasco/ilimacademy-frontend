@@ -5,6 +5,7 @@ import { API_URL } from "../../config";
 import useStore from "../../stores/userStore";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { Button } from "../Button";
 
 export default function Exercise({ data }) {
   const [loading, setLoading] = useState(false)
@@ -47,7 +48,7 @@ export default function Exercise({ data }) {
             <Image src='/Ilim.svg' alt='' width="50px" height="50px"></Image>
           </div>
           <div className="exercise-header-button">
-            <button onClick={() => router.back()}>Exit</button>
+            <Button onClick={() => router.back()} buttonStyle="btn--primary--solid" buttonSize={"btn--small"}>Exit</Button>
           </div>
         </div>
       </header>

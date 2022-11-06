@@ -4,6 +4,7 @@ import Choice from './Choice';
 import Results from './Results';
 import { InlineTex } from 'react-tex';
 import { API_URL } from '../../config';
+import { Button } from '../Button';
 
 export default function Questions({ subject, topic, questions, qtokens, etoken, endExercise, isComplete, results, seeResults, setSeeResults, loading }) {
   const [exerciseEnd, setExerciseEnd] = useState(false);
@@ -102,18 +103,18 @@ export default function Questions({ subject, topic, questions, qtokens, etoken, 
     if (loadingQuestion || loading) return <button className="contained">Loading...</button>
     if (isComplete) {
       if (!seeResults) {
-        return <button onClick={() => {setSeeResults(true); setCurrentQuestion();}} className="question-next-button contained">View Results</button> 
+        return <Button onClick={() => {setSeeResults(true); setCurrentQuestion();}} className="question-next-button contained">View Results</Button> 
       } else {
         return
       }
     }
     if (isSubmitted[question.id]) {
       if ((currentQuestion + 1) == questions.length) {
-        return <button onClick={() => endExercise()} disabled={!Object.values(isSubmitted).every(value => value === true)} className="question-next-button contained">End Exercise</button> 
+        return <Button onClick={() => endExercise()} disabled={!Object.values(isSubmitted).every(value => value === true)} className="question-next-button">End Exercise</Button> 
       }
-      return <button onClick={() => nextQuestion()} className="question-next-button contained">Next Question</button>
+      return <Button onClick={() => nextQuestion()} buttonStyle={"btn--primary--solid"} buttonSize={"btn--small"} className="question-next-button">Next Question</Button>
     }
-    return <button onClick={() => submitQuestion()} disabled={selectedChoice[question.id] == undefined} className="question-check-button contained">Check Answer</button>
+    return <Button onClick={() => submitQuestion()} buttonStyle={"btn--primary--solid"} buttonSize={"btn--small"} disabled={selectedChoice[question.id] == undefined} className="question-check-button">Check Answer</Button>
   }
 
   const content = `

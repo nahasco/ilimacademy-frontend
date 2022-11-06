@@ -1,17 +1,26 @@
-import React from 'react'
+const STYLES = ["btn--primary--solid", "btn--primary--outline", "btn--secondery--solid"];
 
-export default function Button(props) {
+const SIZES = ["btn--small", "btn--medium", "btn--large", "btn--full"];
 
-    let buttonclasses
-
-    if (props.type == "contained") {
-        buttonclasses = "contained"
-    }
-    else if (props.type == "outlined") {
-        buttonclasses = "outlined"
-    }
+export const Button = ({
+    children,
+    type,
+    onClick,
+    buttonStyle,
+    buttonColor,
+    buttonSize
+}) => {
+    const checkButtonStyle = STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0];
+    
+    const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
 
     return (
-        <button className={buttonclasses}>{props.children}</button>
-    )
-}
+        <button
+        className={`btn ${checkButtonStyle} ${checkButtonSize}`}
+        onClick={onClick}
+        type={type}
+        >
+        {children}
+        </button>
+    );
+};
