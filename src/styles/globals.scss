@@ -111,6 +111,11 @@ a {
     }
 }
 
+button:disabled {
+    pointer-events: none;
+    border: none;
+}
+
 .widget {
     display: flex;
     flex-direction: column;

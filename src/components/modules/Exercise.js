@@ -48,7 +48,7 @@ export default function Exercise({ data }) {
             <Image src='/Ilim.svg' alt='' width="50px" height="50px"></Image>
           </div>
           <div className="exercise-header-button">
-            <Button onClick={() => router.back()} buttonStyle="btn--primary--solid" buttonSize={"btn--small"}>Exit</Button>
+            <Button onClick={() => router.back()} buttonStyle="btn--primary--outline" buttonSize={"btn--small"}>Exit</Button>
           </div>
         </div>
       </header>
