@@ -51,11 +51,11 @@ export default function LoginPage() {
         setLoading(false)
 
       } else if (response.status == 400) {
-        const error = await response.json()
+        const error1 = await response.json()
         let errorMessage = ""
-        for (let key in error){
-          console.log(error[key])
-          errorMessage = errorMessage + (`${error[key]}\n`)
+        for (let key in error1){
+          console.log(error1[key])
+          errorMessage = errorMessage + (`${error1[key]}\n`)
         }
         setError(errorMessage) 
       } else {
