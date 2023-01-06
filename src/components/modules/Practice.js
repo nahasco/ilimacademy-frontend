@@ -61,7 +61,7 @@ export default function Practice(props) {
             }
 
             if (i==5 && !found) {
-                days.push({date: minusDate(5-h).toISOString().split("T")[0]})
+                days.push({date: minusDate(5-h).toISOString().replace(/T.*/,'').split('-').reverse().join('/')})
             }
         }
     }
@@ -133,7 +133,7 @@ export default function Practice(props) {
                                 subject={props.subject} 
                                 height="37px" 
                                 text={true}/>
-                                <span className="tooltiptext">{ring.date}</span>
+                                <span className="tooltiptext">{ring.date.replace(/T.*/,'').split('-').reverse().join('/')}</span>
                                 </div>
                                 :
                                 <div className="tooltip"
