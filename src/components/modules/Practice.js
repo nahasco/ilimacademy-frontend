@@ -61,11 +61,10 @@ export default function Practice(props) {
             }
 
             if (i==5 && !found) {
-                days.push(null)
+                days.push({date: minusDate(5-h).toISOString().split("T")[0]})
             }
         }
     }
-    console.log(days)
 
 
     return (
@@ -123,23 +122,31 @@ export default function Practice(props) {
                         <div className="subject-last-progress-title">Last 5 Days</div>
                         <div className="rings-last-7-days">
                             {(days).map((ring, index) => (
-                                ring
+                                ring.id
                                 ?
-                                (<ActivityRings 
+                                <div className="tooltip" 
                                 key={ring.id} 
+                                >
+                                <ActivityRings 
                                 total={ring[`${props.subject.toLowerCase()}_progress`]} 
                                 progress={(ring[`${props.subject.toLowerCase()}_progress`]/ring[`${props.subject.toLowerCase()}_total`])*100} 
                                 subject={props.subject} 
                                 height="37px" 
-                                text={true}/>)
+                                text={true}/>
+                                <span className="tooltiptext">{ring.date}</span>
+                                </div>
                                 :
-                                (<ActivityRings
-                                key={`ring${index}`} 
+                                <div className="tooltip"
+                                key={`ring${index}`}>
+                                <ActivityRings
                                 total={0} 
                                 progress={0} 
                                 subject={props.subject} 
                                 height="37px" 
-                                text={true}/>)
+                                text={true}/>
+                                <span className="tooltiptext">{ring.date}</span>
+                                </div>
+                                
                                 
                             ))}
                         </div>
