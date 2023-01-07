@@ -51,13 +51,15 @@ export default function Practice(props) {
         var found = null
 
         for (let i=0; i<6; i++) {
-            if (new Date(data.progress.last_5_days[i].date).withoutTime().getTime() == minusDate(0).getTime()) {
-                todays_progress = data.progress.last_5_days[i]
-            }
+            if (data.progress.last_5_days[i]) {
+                if (new Date(data.progress.last_5_days[i].date).withoutTime().getTime() == minusDate(0).getTime()) {
+                    todays_progress = data.progress.last_5_days[i]
+                }
 
-            if (minusDate(6-h).getTime() == new Date(data.progress.last_5_days[i].date).withoutTime().getTime()) {
-                days.push(data.progress.last_5_days[i])
-                found = true
+                if (minusDate(6-h).getTime() == new Date(data.progress.last_5_days[i].date).withoutTime().getTime()) {
+                    days.push(data.progress.last_5_days[i])
+                    found = true
+                }
             }
 
             if (i==5 && !found) {

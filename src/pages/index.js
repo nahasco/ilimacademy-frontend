@@ -44,7 +44,8 @@ function Dashboard() {
           <button>?</button>
         </div>
         <div className="widget-content">
-          <AreaGraph data={data.progress_history}/>
+          {data.progress_history[1] ? <AreaGraph data={data.progress_history}/> : <div>Practice on more days to get you progress history graph</div>}
+         
         </div>
       </div>
 
