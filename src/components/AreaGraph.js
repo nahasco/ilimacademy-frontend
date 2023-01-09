@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 export default function AreaGraph({ data }) {
-    console.log(data)
     return (
         <ResponsiveContainer width="99%" height="99%">
             <AreaChart data={data}

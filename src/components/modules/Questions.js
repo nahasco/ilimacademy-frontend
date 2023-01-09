@@ -5,9 +5,11 @@ import Results from './Results';
 import { InlineTex } from 'react-tex';
 import { API_URL } from '../../config';
 import { Button } from '../Button';
+import useStore from "../../stores/userStore"
 
 export default function Questions({ subject, topic, questions, qtokens, etoken, endExercise, isComplete, results, seeResults, setSeeResults, loading }) {
   const [exerciseEnd, setExerciseEnd] = useState(false);
+  const token = useStore((state) => state.token)
   const [loadingQuestion, setLoadingQuestion] = useState(false)
   const [checkQuestion, setCheckQuestion] = useState(() => {
     let x = {}
@@ -73,13 +75,11 @@ export default function Questions({ subject, topic, questions, qtokens, etoken, 
     }
 
     try {
-      const token = localStorage.getItem("key");
-
       const response = await fetch(`${API_URL}/api/app/question/submit/`, {
           method: "POST",
           headers: {
               "Content-type": "application/json",
-              Authorization: `Token ${token}`,
+              Authorization: token,
           },
           body: JSON.stringify(data),
       });

@@ -3,6 +3,8 @@ import Router from "next/router";
 import { API_URL } from "../config/index";
 import useStore from "../stores/userStore";
 import Link from "next/link";
+import { auth } from "../config/firebase"
+import { createUserWithEmailAndPassword, getIdToken } from "firebase/auth";
 
 export default function RegisterPage() {
     const setLoading = useStore((state) => state.setLoading);
@@ -31,6 +33,7 @@ export default function RegisterPage() {
     async function onSubmit(event) {
         setLoading(true)
         event.preventDefault();
+
         try {
             const response = await fetch(`${API_URL}/api/account/register/`, {
                 method: "POST",
@@ -40,27 +43,67 @@ export default function RegisterPage() {
                 body: JSON.stringify(formData),
             });
 
-            if (response.ok) Router.push("/login")
+            if (response.ok) {
+                const user = await createUserWithEmailAndPassword(auth, formData.email, formData.password1)
+                console.log(user)
+                Router.push("/login")
+            }
+
             else if (response.status == 400) {
                 const error = await response.json()
                 let errorMessage = ""
                 for (let key in error){
-                  console.log(error[key])
-                  errorMessage = errorMessage + (`${error[key]}\n`)
+                    console.log(error[key])
+                    errorMessage = errorMessage + (`${error[key]}\n`)
                 }
                 setError(errorMessage) 
-              } else {
+                } else {
                 setError("We could'nt perform this action right now, please try again later.") 
-              }
+                }
 
 
-            if (response) setLoading(false)
+            setLoading(false)
 
 
         } catch (error) {
             console.log(error);
         }
     }
+
+
+    // async function onSubmit(event) {
+    //     setLoading(true)
+    //     event.preventDefault();
+    //     try {
+    //         const response = await fetch(`${API_URL}/api/account/register/`, {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-type": "application/json",
+    //             },
+    //             body: JSON.stringify(formData),
+    //         });
+
+    //         if (response.ok) Router.push("/login")
+    //         else if (response.status == 400) {
+    //             const error = await response.json()
+    //             let errorMessage = ""
+    //             for (let key in error){
+    //               console.log(error[key])
+    //               errorMessage = errorMessage + (`${error[key]}\n`)
+    //             }
+    //             setError(errorMessage) 
+    //           } else {
+    //             setError("We could'nt perform this action right now, please try again later.") 
+    //           }
+
+
+    //         if (response) setLoading(false)
+
+
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
 
     return (
         <div className="register-container">

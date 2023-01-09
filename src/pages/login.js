@@ -5,21 +5,19 @@ import { API_URL } from "../config/index";
 import useStore from "../stores/userStore";
 import useData from "../stores/useData";
 import { LockClosedIcon } from '@heroicons/react/solid'
-import { getUserData } from "../utils/common";
+import { signInWithEmailAndPassword, getIdToken } from "firebase/auth";
+import { auth } from "../config/firebase";
 
 export default function LoginPage() {
-  const login = useStore((state) => state.login);
   const setData = useData((state) => state.setData);
   const datastore = useData((state) => state.data)
-  const setLoading = useStore((state) => state.setLoading);
-  const isLoading = useStore((state) => state.isLoading);
+  const setAuthenticated = useStore((state) => state.setAuthenticated)
   const [error, setError] = useState()
-
+  const [loading, setLoading] = useState()
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
-
   const { username, password } = formData;
 
   function onChange(event) {
@@ -33,46 +31,61 @@ export default function LoginPage() {
     setLoading(true)
     event.preventDefault();
     try {
-      const response = await fetch(`${API_URL}/api/account/login/`, {
-          method: "POST",
-          headers: {
-              "Content-type": "application/json",
-          },
-          body: JSON.stringify(formData),
-      });
+        const user = await signInWithEmailAndPassword(auth, formData.username, formData.password)
 
-      if (response.ok) {
-        const data = await response.json();
-        login(data.key);
-        const returnedData = await getUserData()
-        setData(returnedData)
-        
-        Router.push("/")
-        setLoading(false)
-
-      } else if (response.status == 400) {
-        const error1 = await response.json()
-        let errorMessage = ""
-        for (let key in error1){
-          console.log(error1[key])
-          errorMessage = errorMessage + (`${error1[key]}\n`)
+        if (user) {
+          setAuthenticated(true)
+          Router.push("/")
         }
-        setError(errorMessage) 
-      } else {
-        setError("We could'nt perform this action right now, please try again later.") 
-      }
-
-      if (response) {setLoading(false)}
 
     } catch (error) {
         console.log(error);
     }
   }
+  // async function onSubmit(event) {
+  //   setLoading(true)
+  //   event.preventDefault();
+  //   try {
+  //     const response = await fetch(`${API_URL}/api/account/login/`, {
+  //         method: "POST",
+  //         headers: {
+  //             "Content-type": "application/json",
+  //         },
+  //         body: JSON.stringify(formData),
+  //     });
+
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       login(data.key);
+  //       const returnedData = await getUserData()
+  //       setData(returnedData)
+        
+  //       Router.push("/")
+  //       setLoading(false)
+
+  //     } else if (response.status == 400) {
+  //       const error1 = await response.json()
+  //       let errorMessage = ""
+  //       for (let key in error1){
+  //         console.log(error1[key])
+  //         errorMessage = errorMessage + (`${error1[key]}\n`)
+  //       }
+  //       setError(errorMessage) 
+  //     } else {
+  //       setError("We could'nt perform this action right now, please try again later.") 
+  //     }
+
+  //     if (response) {setLoading(false)}
+
+  //   } catch (error) {
+  //       console.log(error);
+  //   }
+  // }
 
   return (
     <div className="register-container">
         <div className="wrapper">
-            {isLoading 
+            {loading 
             ? 
             <div>Loading...</div>
             :

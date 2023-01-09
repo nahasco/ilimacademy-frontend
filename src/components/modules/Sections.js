@@ -9,6 +9,7 @@ import FullPageLoader from '../FullPageLoader'
 import Popup from './Popup'
 import { API_URL } from '../../config'
 import { Button } from '../Button'
+import Router from 'next/router'
 
 export default function Sections({subject}) {
     const data = useData((state) => state.data)
@@ -71,7 +72,7 @@ function Topic({topic, subject}) {
     const data = useData((state) => state.data)
     const [loading, setLoading] = useState(false)
     let [isOpen, setIsOpen] = useState(false)
-    const key = useStore((state) => state.key)
+    const token = useStore((state) => state.token)
     const [notes, setNotes] = useState(() => {
         let x = {}
         if (data.notes) {
@@ -110,7 +111,7 @@ function Topic({topic, subject}) {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
-                Authorization: "Token " + key
+                Authorization: token
             },
             body: JSON.stringify({"topic": topic.id, "content": notes[topic.id].trim()}),
         })
@@ -126,6 +127,31 @@ function Topic({topic, subject}) {
         </button>
     )
 
+    async function practiceExercise(topicID, setLoading) {
+        setLoading(true)
+    
+        const key = localStorage.getItem("key");
+    
+        try {
+            const response = await fetch(`${API_URL}/api/app/topic/${topicID}/`, {
+                headers: {
+                    "Content-type": "application/json",
+                    Authorization: token,
+                },
+            });
+    
+            if (response.ok) {
+                const data = await response.json();
+                Router.push(`exercise/${data.exercise_id}/`)
+                }
+                
+            return;
+    
+        } catch (err) {
+            console.log(err);
+            return;
+        }
+    }
 
     return(
         <>

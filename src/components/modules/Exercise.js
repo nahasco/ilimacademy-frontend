@@ -15,6 +15,7 @@ export default function Exercise({ data }) {
   const [isComplete, setIsComplete] = useState(data.completed)
   const [results, setResults] = useState(data.results)
   const [seeResults, setSeeResults] = useState(data.completed)
+  const token = useStore((state) => state.token)
   
   async function endExercise() {
     setLoading(true)
@@ -22,7 +23,7 @@ export default function Exercise({ data }) {
       method: "POST",
       headers: {
           "Content-type": "application/json",
-          Authorization: "Token " + key
+          Authorization: token
       },
       body: JSON.stringify({"exercise_token": data.etoken}),
     })

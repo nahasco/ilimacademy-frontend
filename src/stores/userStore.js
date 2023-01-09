@@ -2,22 +2,33 @@ import create from 'zustand'
 
 const useStore = create((set) => ({
     username: "",
-    isAuthenticated: false,
-    key: "",
-    isLoading: true,
+    isAuthenticated: null,
+    token: "",
+    isLoading: false,
+    user: null,
 
-    login: (key) => {
-        set(() => ({isAuthenticated: true, key: key}))
-        set(() => (localStorage.setItem("key", key)))
-    },
+    // login: (key) => {
+    //     set(() => ({isAuthenticated: true, key: key}))
+    // },
     
-    logout: () => {
-        set(() => ({isAuthenticated: false, key:""}))
-        set(() => (localStorage.clear()))
-    },
+    // logout: () => {
+    //     set(() => ({isAuthenticated: false, key:""}))
+    // },
 
     setLoading: (status) => {
         set(() => ({isLoading: status}))
+    },
+
+    setUser: (user) => {
+        set(() => ({user: user}))
+    },
+
+    setAuthenticated: (status) => {
+        set(() => ({isAuthenticated: status}))
+    },
+
+    setToken: (token) => {
+        set(() => ({token: token}))
     }
 }))
 
