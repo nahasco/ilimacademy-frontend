@@ -3,10 +3,6 @@ import Skill_level from "../Skill_level"
 import {useState} from 'react'
 import useData from "../../stores/useData"
 
-import * as Tooltip from '@radix-ui/react-tooltip';
-
-
-
 export default function Practice(props) {
     const [selected, setSelected] = useState(1)
     const data = useData((state) => state.data)

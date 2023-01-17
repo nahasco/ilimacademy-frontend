@@ -7,6 +7,7 @@ import Router from 'next/router';
 import { useRouter } from "next/router";
 import useStore from "../stores/userStore";
 import FullPageLoader from "./FullPageLoader";
+import { signOut } from 'firebase/auth';
 
 const fetcher = async (url, key) => {
     const res = await fetch(url, { headers: { Authorization: key, "Content-type": "application/json" } })
@@ -32,34 +33,59 @@ function PrivateRoute({ children }) {
     const token = useStore((state) => state.token);
     const setData = useData((state) => state.setData)
     const userData = useData((state) => state.data)
-    
-    const { data, error } = useSWR(user ? [`${API_URL}/api/app/data/`, token] : null, fetcher);
+    const [authenticated, setAuthenticated] = useState(null)
 
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((user) => {
-        if (user) {
-            setUser(user);
-            setToken(user.accessToken)
-            if (data) setData(data);
-        }
-        setLoading(false);
+        const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+            if (currentUser) {
+                fetch(`${API_URL}/api/app/data/`, {
+                    method: "GET",
+                    headers: {
+                        "Content-type": "application/json",
+                        Authorization: currentUser.accessToken
+                    },
+                })
+                .then(response => {
+                    if (response.ok) {
+                        setAuthenticated(true);
+                        setToken(currentUser.accessToken)
+                        return response.json();
+                    } else {
+                        setAuthenticated(false);
+                        setLoading(false);
+                        throw new Error('Invalid response from server');
+                        return null
+                    }
+                })
+                .then(data => {
+                    setData(data);
+                    setLoading(false);
+                })
+                .catch(error => {
+                    setAuthenticated(false)
+                    throw new Error('Error fetching');
+                    return null
+                });
+            } else {
+                setAuthenticated(false);
+                setLoading(false);
+                return null
+            }
         });
-
         return () => unsubscribe();
-    }, [data]);
-    
+    }, []);
 
-    if (loading || user && !userData) {
+    if (loading || (authenticated && !userData) || authenticated==null) {
         return <FullPageLoader />;
     }
 
-    if (user && unprotectedRoutes.includes(Router.route)) {
+    if (authenticated && unprotectedRoutes.includes(Router.route)) {
         Router.push('/');
         return null;
     }
 
-    if (!user && protectedRoutes) {
+    if (!authenticated && protectedRoutes) {
         Router.push('/login');
         return null;
     }
@@ -68,4 +94,3 @@ function PrivateRoute({ children }) {
 }
 
 export default PrivateRoute;
-

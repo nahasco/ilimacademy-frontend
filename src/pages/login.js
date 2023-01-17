@@ -7,6 +7,7 @@ import useData from "../stores/useData";
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { signInWithEmailAndPassword, getIdToken } from "firebase/auth";
 import { auth } from "../config/firebase";
+import GoogleAuth from "../components/GoogleAuth";
 
 export default function LoginPage() {
   const setData = useData((state) => state.setData);
@@ -122,8 +123,9 @@ export default function LoginPage() {
                     />
                   </div>
                 </div>
-                <button type="submit" className="contained stretch">Login</button>
+                <button type="submit" className="contained stretch">Login</button>   
             </form>
+              <GoogleAuth setLoading={setLoading}/>
             </>
             }
         </div>
