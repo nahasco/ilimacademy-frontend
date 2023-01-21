@@ -34,11 +34,11 @@ function PrivateRoute({ children }) {
     const setData = useData((state) => state.setData)
     const userData = useData((state) => state.data)
     const [authenticated, setAuthenticated] = useState(null)
-
+    const authenticating = useStore((state) => state.authenticating);
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((currentUser) => {
-            if (currentUser) {
+            if (currentUser && !authenticating) {
                 fetch(`${API_URL}/api/app/data/`, {
                     method: "GET",
                     headers: {
@@ -54,7 +54,6 @@ function PrivateRoute({ children }) {
                     } else {
                         setAuthenticated(false);
                         setLoading(false);
-                        throw new Error('Invalid response from server');
                         return null
                     }
                 })
@@ -64,7 +63,6 @@ function PrivateRoute({ children }) {
                 })
                 .catch(error => {
                     setAuthenticated(false)
-                    throw new Error('Error fetching');
                     return null
                 });
             } else {
@@ -74,7 +72,7 @@ function PrivateRoute({ children }) {
             }
         });
         return () => unsubscribe();
-    }, []);
+    }, [authenticating]);
 
     if (loading || (authenticated && !userData) || authenticated==null) {
         return <FullPageLoader />;

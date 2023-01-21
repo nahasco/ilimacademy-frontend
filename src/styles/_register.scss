@@ -25,12 +25,12 @@
     }
 
     .form-group {
-        margin: 1rem 0;
+        margin-bottom: 1rem;
     }
 
-    .inputs {
-        margin: 2rem 0;
-    }
+    // .inputs {
+    //     margin: 2rem 0;
+    // }
 }
 
 .account-massage {
@@ -43,7 +43,7 @@
     background-color: var(--incorrect-red-light);
     border: solid 1px var(--incorrect-red);
     padding: 1rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
     width: 100%;
     border-radius: 0.5rem;
     white-space: pre-wrap;

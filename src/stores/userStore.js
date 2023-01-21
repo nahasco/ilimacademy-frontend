@@ -6,6 +6,7 @@ const useStore = create((set) => ({
     token: "",
     isLoading: false,
     user: null,
+    authenticating: false,
 
     // login: (key) => {
     //     set(() => ({isAuthenticated: true, key: key}))
@@ -29,6 +30,10 @@ const useStore = create((set) => ({
 
     setToken: (token) => {
         set(() => ({token: token}))
+    },
+
+    setAuthenticating: (status) => {
+        set(() => ({authenticating: status}))
     }
 }))
 
