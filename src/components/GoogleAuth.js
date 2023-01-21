@@ -28,8 +28,11 @@ export default function GoogleAuth({setLoading}) {
                 body: JSON.stringify({email: result.user.email, password: result.user.accessToken}) 
             }).then((response) => {
                 setAuthenticating(false)
+                Router.push("/")
+            }).catch((error) => {
                 setLoading(false)
             })
+
         }).catch((error) => {
             console.log(error)
             setAuthenticating(false)
