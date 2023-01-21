@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import QuestionsPagination from './QuestionsPagination';
 import Choice from './Choice';
 import Results from './Results';
-import { InlineTex } from 'react-tex';
 import { API_URL } from '../../config';
 import { Button } from '../Button';
 import useStore from "../../stores/userStore"
