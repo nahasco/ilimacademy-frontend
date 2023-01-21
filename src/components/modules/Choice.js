@@ -1,5 +1,6 @@
-export default function Choice({setSelectedChoice, selectedChoice, question, choice, isSubmitted, checkQuestion, setCheckQuestion}) {
+import Latex from "react-latex-next"
 
+export default function Choice({setSelectedChoice, selectedChoice, question, choice, isSubmitted, checkQuestion, setCheckQuestion}) {
     function choiceClassNames () {
       if (selectedChoice[question.id] == choice.id) {
         if (isSubmitted[question.id]) {
@@ -22,7 +23,7 @@ export default function Choice({setSelectedChoice, selectedChoice, question, cho
         className={"choice " + choiceClassNames()} key={choice.id}
         >
         <div className="choice-letter">{choice.letter}</div>
-        <div className="choice-content">{choice.content}</div>
+        <div className="choice-content"><Latex>{choice.content}</Latex></div>
       </button>
     )
   }
