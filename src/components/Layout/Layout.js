@@ -8,7 +8,7 @@ export default function Layout({ children }) {
         <Navbar/>
         <div className='main'>
           <div className="mobile-header">
-            <Image src='/Ilim.svg' alt='' width="50px" height="50px"></Image>
+            <Image src='/Ilim.svg' alt='' width="50" height="50"></Image>
           </div>
           <div className='pages'>
             { children }
