@@ -8,12 +8,12 @@ import useStore from '../../../stores/userStore';
 export default function ExercisePage() {
   const router = useRouter()
   const id = router.query.id
-  const key = localStorage.getItem("key");
+  const token = useStore((state) => state.token)
   const setLoading = useStore((state) => state.setLoading)
 
   //check if id is a valid number
-  const fetcher = async (url, key) => {
-    const res = await fetch(url, { headers: { Authorization: "Token " + key, "Content-type": "application/json" } })
+  const fetcher = async (url, token) => {
+    const res = await fetch(url, { headers: { Authorization: token, "Content-type": "application/json" } })
   
     // If the status code is not in the range 200-299,
     // we still try to parse and throw it.
@@ -27,7 +27,7 @@ export default function ExercisePage() {
   
     return res.json()
   }
-  const { data, error } = useSWR([`${API_URL}/api/app/exercise/${id}/`, key], fetcher)
+  const { data, error } = useSWR([`${API_URL}/api/app/exercise/${id}/`, token], fetcher)
   
   if (!isFinite(id)) {
     return <div>404 not found</div>

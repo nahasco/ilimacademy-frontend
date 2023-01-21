@@ -3,6 +3,10 @@ import { Menu, Transition } from "@headlessui/react";
 import useStore from "../stores/userStore";
 import { API_URL } from "../config";
 import Router from "next/router";
+import { signOut } from "firebase/auth";
+import { deepCopy } from "@firebase/util";
+import { auth } from "../config/firebase";
+import useData from "../stores/useData";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -30,20 +34,33 @@ export function DropMenuItem(props){
 }
 
 export default function DropMenu(props) {
-  const logout = useStore((state) => state.logout);
+  const setAuthenticated = useStore((state) => state.setAuthenticated);
+  const setData = useData((state) => state.setData)
 
-  async function Logout(event) {
-    const response = await fetch(`${API_URL}/api/account/logout/`, {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-    });
-
-    if (response.ok) {
-      console.log("logged out");
-      logout();
+  function Logout() {
+    signOut(auth).then(() => {
+      console.log("loggedout")
+      setAuthenticated(false)
+      setData(null)
       Router.push("/login");
-    }
+
+    }).catch((err) => {
+      console.log(err)
+    });
   }
+
+  // async function Logout(event) {
+  //   const response = await fetch(`${API_URL}/api/account/logout/`, {
+  //     method: "POST",
+  //     headers: { "Content-type": "application/json" },
+  //   });
+
+  //   if (response.ok) {
+  //     console.log("logged out");
+  //     logout();
+  //     Router.push("/login");
+  //   }
+  // }
 
   return (
     <Menu as="div" className="relative inline-block text-left">

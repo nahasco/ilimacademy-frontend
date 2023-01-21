@@ -9,7 +9,7 @@ export default function SettingsPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
   const data = useData((state) => state.data.user)
-  const key = useStore((state) => state.key)
+  const token = useStore((state) => state.token)
   const [formData, setFormData] = useState({
     first_name: data.first_name,
     last_name: data.last_name,
@@ -34,7 +34,7 @@ export default function SettingsPage() {
           method: "POST",
           headers: {
             "Content-type": "application/json",
-            Authorization: "Token " + key
+            Authorization: token
         },
           body: JSON.stringify(formData),
       });

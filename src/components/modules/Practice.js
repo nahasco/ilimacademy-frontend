@@ -3,10 +3,6 @@ import Skill_level from "../Skill_level"
 import {useState} from 'react'
 import useData from "../../stores/useData"
 
-import * as Tooltip from '@radix-ui/react-tooltip';
-
-
-
 export default function Practice(props) {
     const [selected, setSelected] = useState(1)
     const data = useData((state) => state.data)
@@ -47,7 +43,6 @@ export default function Practice(props) {
     const days = []
 
     for (let h=1; h<6; h++) {
-        console.log(minusDate(6-h))
         var found = null
 
         for (let i=0; i<6; i++) {
@@ -55,7 +50,6 @@ export default function Practice(props) {
                 if (new Date(data.progress.last_5_days[i].date).withoutTime().getTime() == minusDate(0).getTime()) {
                     todays_progress = data.progress.last_5_days[i]
                 }
-
                 if (minusDate(6-h).getTime() == new Date(data.progress.last_5_days[i].date).withoutTime().getTime()) {
                     days.push(data.progress.last_5_days[i])
                     found = true
