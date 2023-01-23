@@ -18,6 +18,27 @@ function Dashboard() {
       }
     }
   }
+
+  Date.prototype.withoutTime = function () {
+    var d = new Date(this);
+    d.setHours(0, 0, 0, 0);
+    return d;
+  }
+  
+  function minusDate(days) {
+    const x =  new Date()
+    const date = new Date(x.setDate(x.getDate() - days))
+    return date.withoutTime()
+  }
+
+  let todays_progress;
+  for (let i=0; i<6; i++) {
+    if (data.progress.last_5_days[i]) {
+      if (new Date(data.progress.last_5_days[i].date).withoutTime().getTime() == minusDate(0).getTime()) {
+        todays_progress = data.progress.last_5_days[i]
+      }
+    }
+  }
   
   return (
   <>
@@ -76,7 +97,12 @@ function Dashboard() {
           <button>?</button>
         </div>
         <div className="widget-content">
-          <ActivityRings math={(data.progress.todays.math_progress/data.progress.todays.math_total)*100} iq={(data.progress.todays.iq_progress/data.progress.todays.iq_total)*100} geometry={(data.progress.todays.geometry_progress/data.progress.todays.geometry_total)*100} height={"140px"}/>
+          {todays_progress
+          ?
+          <ActivityRings math={(todays_progress.math_progress/todays_progress.math_total)*100} iq={(todays_progress.iq_progress/todays_progress.iq_total)*100} geometry={(todays_progress.geometry_progress/todays_progress.geometry_total)*100} height={"140px"}/>
+          :
+          <ActivityRings math={0} iq={0} geometry={0} height={"140px"}/>
+          }
           <div className="rings-keys">
             <div className="key">
               <div className="key-color math"></div>
