@@ -6,6 +6,8 @@ import { API_URL } from '../../config';
 import { Button } from '../Button';
 import useStore from "../../stores/userStore"
 import Latex from 'react-latex-next';
+import { BarLoader, FadeLoader, MoonLoader, PuffLoader } from 'react-spinners';
+import Loader from '../Loader';
 
 export default function Questions({ subject, topic, questions, qtokens, etoken, endExercise, isComplete, results, seeResults, setSeeResults, loading }) {
   const [exerciseEnd, setExerciseEnd] = useState(false);
@@ -100,7 +102,16 @@ export default function Questions({ subject, topic, questions, qtokens, etoken, 
   } 
 
   function footerButton() {
-    if (loadingQuestion || loading) return <button className="contained">Loading...</button>
+    if (loadingQuestion || loading) {
+      return (
+      <Button buttonStyle={"btn--primary--solid"} buttonSize={"btn--small"} disabled={true} className="question-check-button">
+        <div className='flex items-center gap-2'>
+          <div>Checking Answer</div>
+        </div>
+      </Button>
+      )
+    }
+
     if (isComplete) {
       if (!seeResults) {
         return <Button onClick={() => {setSeeResults(true); setCurrentQuestion();}} className="question-next-button contained">View Results</Button> 
@@ -122,7 +133,9 @@ export default function Questions({ subject, topic, questions, qtokens, etoken, 
       <main className='main-container'>
         <div className="question-container">
           { loading 
-          ? <div>Loading...</div> 
+          ? <div className='flex justify-center items-center h-full'>
+            <Loader size={50}/>
+            </div> 
           : <>
               {seeResults ? <Results results={results} subject={subject} topic={topic}/> :
                 <>
@@ -141,10 +154,14 @@ export default function Questions({ subject, topic, questions, qtokens, etoken, 
             </>}
         </div>
       </main>
+
       <footer className="footer">
-        <div className="innerfooter">
-          <QuestionsPagination questionsNumber={questions.length} isSubmitted={isSubmitted} checkQuestion={checkQuestion} currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion} questions={questions} setSeeResults={setSeeResults}/>
-          {footerButton()}
+        { loadingQuestion && <div className='absolute right-0 left-0'><BarLoader width={"100%"}/></div>}
+        <div className='footer-content'>
+          <div className="innerfooter">
+            <QuestionsPagination questionsNumber={questions.length} isSubmitted={isSubmitted} checkQuestion={checkQuestion} currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion} questions={questions} setSeeResults={setSeeResults}/>
+            {footerButton()}
+          </div>
         </div>
       </footer>
     </>

@@ -1,4 +1,7 @@
 @import './navbar', './header', './dashboard', './register', './skill_level', './acticivtyrings', './practice', './exercise', './history';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
     box-sizing: border-box;
@@ -56,6 +59,7 @@ a {
     position: absolute;
     width: 100%;
     height: 100vh;
+    color: var(--primary);
     background-color: white;
     top: 0;
     left: 0;
@@ -63,8 +67,10 @@ a {
     bottom: 0;
     z-index: 1000;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1rem;
 }
 
 .btn {
@@ -106,7 +112,7 @@ a {
 
     &:disabled {
         pointer-events: none;
-        background-color: #e8e8e8;
+        background-color: #dbdbdb;
         border: none;
     }
 }

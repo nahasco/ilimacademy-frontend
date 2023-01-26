@@ -10,6 +10,7 @@ import Popup from './Popup'
 import { API_URL } from '../../config'
 import { Button } from '../Button'
 import Router from 'next/router'
+import { BeatLoader, PulseLoader } from 'react-spinners'
 
 export default function Sections({subject}) {
     const data = useData((state) => state.data)
@@ -170,8 +171,12 @@ function Topic({topic, subject}) {
                         <Notes_icon/>
                         Notes
                     </button>
-                    <Button onClick={() => practiceExercise(topic.id, setLoading)} buttonStyle={"btn--primary--outline"} buttonSize={"btn--small"}>{loading ? "Loading..." : "Practice"}</Button>
-                    {/* <button onClick={() => practiceExercise(topic.id, setLoading)} className="outlined practice-btn">{loading ? "Loading..." : "Practice"}</button> */}
+                    {loading 
+                    ?
+                    <Button className={"flex justify-center items-center px-10 py-3"} buttonStyle={"btn--primary--outline"} buttonSize={"btn--small"}><PulseLoader size={5} color={"#25114E"}/></Button>
+                    : 
+                    <Button onClick={() => practiceExercise(topic.id, setLoading)} buttonStyle={"btn--primary--outline"} buttonSize={"btn--small"}>Practice</Button>
+                    }
                 </div>
             </div>
         </>
