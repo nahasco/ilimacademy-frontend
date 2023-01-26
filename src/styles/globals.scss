@@ -206,7 +206,18 @@ button:disabled {
       box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
       cursor: not-allowed;
     }
-  }  
+}
+
+.success {
+    color: var(--correct-green);
+    background-color: var(--correct-green-light);
+    border: solid 1px var(--correct-green);
+    padding: 1rem;
+    margin-top: 2rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    white-space: pre-wrap;
+}
 
 
   

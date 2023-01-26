@@ -5,11 +5,15 @@ import useStore from "../stores/userStore";
 import Layout from '../components/Layout/Layout'
 import { API_URL } from '../config'
 import useData from '../stores/useData'
+import { PulseLoader } from 'react-spinners';
+import { auth } from '../config/firebase';
+
 export default function SettingsPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
   const data = useData((state) => state.data.user)
   const token = useStore((state) => state.token)
+  const [message, setMessage] = useState()
   const [formData, setFormData] = useState({
     first_name: data.first_name,
     last_name: data.last_name,
@@ -30,20 +34,27 @@ export default function SettingsPage() {
     setLoading(true)
     event.preventDefault();
     try {
+      const idToken = await auth.currentUser.getIdToken(/* forceRefresh */ true)
       const response = await fetch(`${API_URL}/api/account/update/`, {
           method: "POST",
           headers: {
             "Content-type": "application/json",
-            Authorization: token
+            Authorization: idToken
         },
           body: JSON.stringify(formData),
-      });
-      if (response) {setLoading(false)}
+      })
 
-      if (response.ok) {
-        const data = await response.json();     
-        setError("")
-      } else {
+      if (response) {
+        setError(null)
+        setLoading(false)
+        setMessage(null)
+      }
+
+      if (response.ok) { 
+        setMessage("Success")
+        data.username = username
+      } 
+      else {
         const error = await response.json()
         let errorMessage = ""
         for (let key in error){
@@ -63,6 +74,7 @@ export default function SettingsPage() {
     <>
       <HeaderMain heading={"Settings"}></HeaderMain>
       {error  && <div className="error my-3">{error}</div>}
+      {message && <div className='success my-3'>{message}</div>}
       <div className='widget'>
         <div className='widget-header'>
           <div className='widget-title'>Personal information</div>
@@ -134,9 +146,8 @@ export default function SettingsPage() {
             </div>
           </div> */}
           <div className='text-right mt-5'>
-            {loading ? <button>Loading...</button> : <Button buttonStyle={"btn--primary--solid"} buttonSize={"btn--large"}>Save</Button>}
+            {loading ? <Button buttonStyle={"btn--primary--solid"} buttonSize={"btn--large"} disabled={true}><PulseLoader size={5} color={"#ffffff"}/></Button> : <Button buttonStyle={"btn--primary--solid"} buttonSize={"btn--large"}>Save</Button>}
           </div>
-          
         </form>
         </div>
       </div>
