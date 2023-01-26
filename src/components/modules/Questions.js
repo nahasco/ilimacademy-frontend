@@ -8,6 +8,7 @@ import useStore from "../../stores/userStore"
 import Latex from 'react-latex-next';
 import { BarLoader, FadeLoader, MoonLoader, PuffLoader } from 'react-spinners';
 import Loader from '../Loader';
+import { auth } from '../../config/firebase';
 
 export default function Questions({ subject, topic, questions, qtokens, etoken, endExercise, isComplete, results, seeResults, setSeeResults, loading }) {
   const [exerciseEnd, setExerciseEnd] = useState(false);
@@ -77,11 +78,12 @@ export default function Questions({ subject, topic, questions, qtokens, etoken, 
     }
 
     try {
+      const idToken = await auth.currentUser.getIdToken(/* forceRefresh */ true)
       const response = await fetch(`${API_URL}/api/app/question/submit/`, {
           method: "POST",
           headers: {
               "Content-type": "application/json",
-              Authorization: token,
+              Authorization: idToken,
           },
           body: JSON.stringify(data),
       });

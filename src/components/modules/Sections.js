@@ -11,6 +11,7 @@ import { API_URL } from '../../config'
 import { Button } from '../Button'
 import Router from 'next/router'
 import { BeatLoader, PulseLoader } from 'react-spinners'
+import { auth } from '../../config/firebase'
 
 export default function Sections({subject}) {
     const data = useData((state) => state.data)
@@ -107,12 +108,12 @@ function Topic({topic, subject}) {
 
     async function saveNote() {
         const noteContent = notes[topic.id]
-        
+        const idToken = await auth.currentUser.getIdToken(/* forceRefresh */ true)
         const response = await fetch(`${API_URL}/api/app/notes-save/`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
-                Authorization: token
+                Authorization: idToken
             },
             body: JSON.stringify({"topic": topic.id, "content": notes[topic.id].trim()}),
         })
@@ -131,9 +132,8 @@ function Topic({topic, subject}) {
     async function practiceExercise(topicID, setLoading) {
         setLoading(true)
     
-        const key = localStorage.getItem("key");
-    
         try {
+            const idToken = await auth.currentUser.getIdToken(/* forceRefresh */ true)
             const response = await fetch(`${API_URL}/api/app/topic/${topicID}/`, {
                 headers: {
                     "Content-type": "application/json",

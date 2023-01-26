@@ -37,32 +37,33 @@ function PrivateRoute({ children }) {
     const authenticating = useStore((state) => state.authenticating);
 
     useEffect(() => {
+
         const unsubscribe = auth.onAuthStateChanged((currentUser) => {
             if (currentUser && !authenticating) {
-                fetch(`${API_URL}/api/app/data/`, {
-                    method: "GET",
-                    headers: {
-                        "Content-type": "application/json",
-                        Authorization: currentUser.accessToken
-                    },
-                })
-                .then(response => {
-                    if (response.ok) {
-                        setAuthenticated(true);
-                        setToken(currentUser.accessToken)
-                        return response.json();
-                    } else {
-                        setAuthenticated(false);
+                currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+                    fetch(`${API_URL}/api/app/data/`, {
+                        method: "GET",
+                        headers: {
+                            "Content-type": "application/json",
+                            Authorization: currentUser.accessToken
+                        },
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            setAuthenticated(true);
+                            setToken(currentUser.accessToken)
+                            return response.json();
+                        } else {
+                            throw ("Server error")
+                        }
+                    })
+                    .then(data => {
+                        setData(data);
                         setLoading(false);
-                        return null
-                    }
-                })
-                .then(data => {
-                    setData(data);
-                    setLoading(false);
-                })
-                .catch(error => {
+                    })
+                }).catch(function(error) {
                     setAuthenticated(false)
+                    setLoading(false);
                     return null
                 });
             } else {

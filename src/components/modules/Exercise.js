@@ -6,6 +6,7 @@ import useStore from "../../stores/userStore";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Button } from "../Button";
+import { auth } from "../../config/firebase";
 
 export default function Exercise({ data }) {
   const [loading, setLoading] = useState(false)
@@ -19,11 +20,12 @@ export default function Exercise({ data }) {
   
   async function endExercise() {
     setLoading(true)
+    const idToken = await auth.currentUser.getIdToken(/* forceRefresh */ true)
     const response = await fetch(`${API_URL}/api/app/exercise/end/`, {
       method: "POST",
       headers: {
           "Content-type": "application/json",
-          Authorization: token
+          Authorization: idToken
       },
       body: JSON.stringify({"exercise_token": data.etoken}),
     })
