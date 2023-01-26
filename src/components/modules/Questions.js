@@ -156,7 +156,7 @@ export default function Questions({ subject, topic, questions, qtokens, etoken, 
       </main>
 
       <footer className="footer">
-        { loadingQuestion && <div className='absolute right-0 left-0'><BarLoader width={"100%"}/></div>}
+        { loadingQuestion && <div className='absolute right-0 left-0'><BarLoader width={"100%"} color={"#25114E"}/></div>}
         <div className='footer-content'>
           <div className="innerfooter">
             <QuestionsPagination questionsNumber={questions.length} isSubmitted={isSubmitted} checkQuestion={checkQuestion} currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion} questions={questions} setSeeResults={setSeeResults}/>
