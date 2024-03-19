@@ -175,7 +175,7 @@ function Topic({topic, subject}) {
                     ?
                     <Button className={"flex justify-center items-center px-10 py-3"} buttonStyle={"btn--primary--outline"} buttonSize={"btn--small"}><PulseLoader size={5} color={"#25114E"}/></Button>
                     : 
-                    <Button onClick={() => practiceExercise(topic.id, setLoading)} buttonStyle={"btn--primary--outline"} buttonSize={"btn--small"}>Practice</Button>
+                    <Button disabled={topic.id != 1} onClick={() => practiceExercise(topic.id, setLoading)} buttonStyle={"btn--primary--outline"} buttonSize={"btn--small"}>Practice</Button>
                     }
                 </div>
             </div>
